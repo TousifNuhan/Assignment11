@@ -1,2 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@theme {
+    --font-primary: "Roboto Slab", "serif";
+    --font-secondary: "Fira Sans", "sans-serif";
+  }
+

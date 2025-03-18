@@ -41,7 +41,7 @@ function App() {
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 7000,
+          delay: 6000,
           disableOnInteraction: false,
           stopOnLastSlide: false,
         }}
@@ -69,7 +69,8 @@ function App() {
                 <p className='text-white font-semibold text-xl mt-1 mb-9'>Unlock the power of teamwork</p>
               </Fade>
               <Fade direction='up' delay={3000}>
-               <a className='cursor-pointer  bg-[#fff568] text-lg font-medium px-8 py-3 rounded-4xl'>Start Studying</a>
+               <a className='cursor-pointer  bg-[#fff568] 
+                text-lg font-medium px-8 py-3 rounded-4xl'>Start Studying</a>
               </Fade>
 
             </div>

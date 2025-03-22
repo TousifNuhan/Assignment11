@@ -88,7 +88,7 @@ function App() {
               backgroundAttachment: "fixed"
             }}>
             <div className="hero-overlay bg-opacity-60"></div>
-            <div className='my-10'>
+            <div className='my-10 '>
               <Fade direction='left' delay={1000}>
                 <h2 className='text-6xl font-semibold text-white'>Study Smarter, Together</h2>
               </Fade>

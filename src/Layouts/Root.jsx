@@ -6,7 +6,7 @@ import Navbar from '../Navbar/Navbar';
 
 const Root = () => {
     return (
-        <div className=' '>
+        <div className='scroll-smooth'>
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>

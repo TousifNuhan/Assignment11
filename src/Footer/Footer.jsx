@@ -6,6 +6,7 @@ import instra from '../assets/Instagram.png';
 import linkedin from '../assets/Linkedin.png';
 import { FaFacebook, FaFacebookF, } from "react-icons/fa";
 import { SlSocialFacebook } from "react-icons/sl";
+import { motion } from "framer-motion";
 
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,7 +30,6 @@ const Footer = () => {
                     <Link to="https://www.linkedin.com/in/gazi-mubtasim-tousif-nuhan/">
                         <img className='h-8' src={linkedin} alt="" />
                     </Link>
-
                 </div>
             </div>
         </div>

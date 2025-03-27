@@ -16,7 +16,7 @@ import SwiperBtns from './SwiperBtns';
 const BestService = () => {
 
     return (
-        <div className='flex items-start w-4/5 mx-auto mb-10'>
+        <div className='flex items-start w-4/5 mx-auto mb-10 mt-20'>
             <div className='w-1/3 mr-8 '>
                 <h4 className='text-[#5ecc62] text-xl tracking-widest font-semibold'>BEST SERVICES</h4>
                 <h1 className='text-5xl font-bold leading-16 my-3'>We <br /> Provide</h1>

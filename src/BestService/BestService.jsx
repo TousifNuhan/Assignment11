@@ -37,7 +37,7 @@ const BestService = () => {
                     className="mySwiper"
                 >
                     <SwiperSlide>
-                        <div className='bg-white min-h-80 shadow-[0_15px_20px_rgba(0,0,0,0.2)]'>
+                        <div className='bg-white min-h-80 shadow-[0_15px_20px_rgba(0,0,0,0.2)] '>
                             <img className='rounded-t-xl' src="https://images.unsplash.com/photo-1690383923011-c63f619f6a5d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTB8fFJlYWwlMjBUaW1lJTIwQ29sbGFib3JhdGlvbnxlbnwwfHwwfHx8MA%3D%3D" alt="" />
                             <div className='text-start w-11/12 mx-auto '>
                                 <h4 className='text-base font-bold text-[#111111] mt-4 mb-2'>Real-Time Collaboration</h4>

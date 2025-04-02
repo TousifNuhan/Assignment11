@@ -13,21 +13,21 @@ const Feature = () => {
                 <div className='flex-1'>
                     <img src="https://staco-react.vercel.app/assets/features1-BBjT5u_I.svg" alt="" />
                     <div className='shadow-[0_15px_20px_rgba(0,0,0,0.2)] rounded-b-2xl bg-white px-3'>
-                        <h4 className='font-bold text-lg text-[#111111] mt-7 mb-4 ml-5'>Collaborative Study Tools</h4>
+                        <h4 className='font-bold text-lg text-[#111111] pt-7 mb-4 ml-5'>Collaborative Study Tools</h4>
                         <p id='para' className='text-[#444444] text-base w-11/12 leading-7 font-semibold ml-5 pb-16 '>Collaborative Study Tools – Work together in real-time with shared notes, interactive whiteboards, and group discussions.</p>
                     </div>
                 </div>
                 <div className='flex-1'>
                     <img src="https://staco-react.vercel.app/assets/features2-IGH6av1f.svg" alt="" />
                     <div className='shadow-[0_15px_20px_rgba(0,0,0,0.2)] rounded-b-2xl bg-white px-3'>
-                        <h4 className='font-bold text-lg text-[#111111] mt-7 mb-4 ml-5'>Smart Matching & Community</h4>
+                        <h4 className='font-bold text-lg text-[#111111] pt-7 mb-4 ml-5'>Smart Matching & Community</h4>
                         <p id='para' className='text-[#444444] text-base w-11/12 leading-7 font-semibold ml-5 pb-16 '>Effortlessly connect with like-minded learners, join study groups, and build a supportive community to enhance collaboration.</p>
                     </div>
                 </div>
                 <div className='flex-1'>
                     <img src="	https://staco-react.vercel.app/assets/features3-CTfO9fm6.svg" alt="" />
                   <div className='shadow-[0_15px_20px_rgba(0,0,0,0.2)] rounded-b-2xl bg-white px-3'>
-                        <h4 className='font-bold text-lg text-[#111111] mt-7 mb-4 ml-5'>Security & Privacy</h4>
+                        <h4 className='font-bold text-lg text-[#111111] pt-7 mb-4 ml-5'>Security & Privacy</h4>
                         <p id='para' className='text-[#444444] text-base w-11/12 leading-7 font-semibold ml-5 pb-16 '>Ensure a safe learning environment with encrypted communication, secure access controls, and robust data protection measures.</p>
                     </div>
                 </div>

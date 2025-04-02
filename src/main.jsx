@@ -11,36 +11,47 @@ import {
 } from "react-router-dom";
 import Root from './Layouts/Root.jsx';
 import Assignments from './Others/Assignments.jsx';
-import { patch } from '@mui/material';
 import CreateAssignment from './Others/CreateAssignment.jsx';
 import PendingAssignment from './Others/PendingAssignment.jsx';
 import MySubmittedAssignments from './Others/MySubmittedAssignments.jsx';
+import Login from './Login/Login.jsx';
+import Register from './Register/Register.jsx';
+import AuthProvider from './Providers/AuthProvider.jsx';
+import PrivateRoute from './Routes/PrivateRoute.jsx';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root></Root> ,
-    children:[
+    element: <Root></Root>,
+    children: [
       {
-        path:'/',
-        element:<Home></Home>
+        path: '/',
+        element: <Home></Home>
       },
       {
-        path:"/assignments",
-        element:<Assignments></Assignments>
+        path: "/assignments",
+        element: <PrivateRoute><Assignments></Assignments></PrivateRoute>
       },
       {
-        path:'/createAssignment',
-        element:<CreateAssignment></CreateAssignment>
+        path: '/createAssignment',
+        element: <CreateAssignment></CreateAssignment>
       },
       {
-        path:'/pendingAssignment',
-        element:<PendingAssignment></PendingAssignment>
+        path: '/pendingAssignment',
+        element: <PendingAssignment></PendingAssignment>
       },
       {
-        path:'/mySubmittedAssignments',
-        element:<MySubmittedAssignments></MySubmittedAssignments>
+        path: '/mySubmittedAssignments',
+        element: <MySubmittedAssignments></MySubmittedAssignments>
+      },
+      {
+        path: "/login",
+        element: <Login></Login>
+      },
+      {
+        path: "/register",
+        element: <Register></Register>
       }
 
     ]
@@ -49,6 +60,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )

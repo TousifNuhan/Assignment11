@@ -1,16 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import fb from '../assets/Facebook.png';
-import fb2 from '../assets/fb2.svg';
 import instra from '../assets/Instagram.png';
 import linkedin from '../assets/Linkedin.png';
-import { FaFacebook, FaFacebookF, } from "react-icons/fa";
-import { SlSocialFacebook } from "react-icons/sl";
-import { motion } from "framer-motion";
-
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 
 
 const Footer = () => {

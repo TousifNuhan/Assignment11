@@ -7,13 +7,13 @@ import { AuthContext } from '../Providers/AuthProvider';
 
 const Root = () => {
 
-    const { loading } = useContext(AuthContext)
+    // const { loading,setLoading } = useContext(AuthContext)
 
-    if (loading) {
-        return <div className='h-screen mx-auto flex justify-center items-center'>
-            <span className="loading loading-ring loading-xl "></span>
-        </div>;
-    }
+    // if (loading) {
+    //     return <div className='h-screen mx-auto flex justify-center items-center'>
+    //         <span className="loading loading-ring loading-xl "></span>
+    //     </div>;
+    // }
 
     const [isScrolled, setIsScrolled] = useState(false);
     const [scrollProgress, setScrollProgress] = useState(0);

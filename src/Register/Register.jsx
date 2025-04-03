@@ -2,32 +2,42 @@ import React, { useContext, useRef } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Register = () => {
 
-    const {user,loading}=useContext(AuthContext)
+    const { user, loading,setLoading } = useContext(AuthContext)
 
-    const location=useLocation()
-    const navigate=useNavigate()
+    const location = useLocation()
+    const navigate = useNavigate()
 
-    const { createWithEmailAndPASS,googleLogin,githubLogin } = useContext(AuthContext)
+    const { createWithEmailAndPASS, googleLogin, githubLogin } = useContext(AuthContext)
 
-    const handleGithubLogin=()=>{
+    const handleGithubLogin = () => {
         githubLogin()
-        .then(result=>{
-            console.log(result.user)
-            navigate(location?.state?location.state:'/')
-        })
-        .catch(error=>console.error(error))
+            .then(result => {
+                console.log(result.user)
+                toast.success("Registration successful!")
+                navigate(location?.state ? location.state : '/')
+            })
+            .catch(error => {
+                console.error(error)
+                toast.error("Registration attempt failed")
+
+            })
     }
 
-    const handleGoogleLogin=()=>{
+    const handleGoogleLogin = () => {
         googleLogin()
-        .then(result=>{
-            console.log(result.user)
-            navigate(location?.state?location.state:'/')
-        })
-        .catch(error=>console.error(error))
+            .then(result => {
+                console.log(result.user)
+                toast.success("Registration successful!")
+                navigate(location?.state ? location.state : '/')
+            })
+            .catch(error => {
+                console.error(error)
+                toast.error("Registration attempt failed")
+            })
 
     }
 
@@ -44,15 +54,15 @@ const Register = () => {
         createWithEmailAndPASS(email, password)
             .then(result => {
                 console.log(result.user)
-                navigate(location?.state?location.state:'/')
+                toast.success("Registration successful!")
+                navigate(location?.state ? location.state : '/')
                 form.reset()
             })
 
             .catch(error => {
-                console.error(console.error)
+                console.error(error)
+                toast.error("Registration attempt failed")
             })
-
-
 
     }
 
@@ -71,19 +81,19 @@ const Register = () => {
                     <div className='w-4/5 mx-auto'>
                         <form onSubmit={handleRegister} className='text-center'>
                             <label className="block">
-                                <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5' type="text" name='name' placeholder='Full Name' />
+                                <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5' type="text" name='name' placeholder='Full Name' required />
                             </label>
 
                             <label className="mt-3 block">
-                                <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5' type="email" name='email' placeholder='E-mail Address' />
+                                <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5' type="email" name='email' placeholder='E-mail Address' required />
                             </label>
 
                             <label className="mt-3 block">
-                                <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5 ' type="url" name='PhotoURL' placeholder='PhotoURL' />
+                                <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5 ' type="url" name='PhotoURL' placeholder='PhotoURL' required />
                             </label>
 
                             <label className="mt-3 block">
-                                <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5 ' type="password" name='password' placeholder='Password' />
+                                <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5 ' type="password" name='password' placeholder='Password' required />
                             </label>
 
 
@@ -96,22 +106,22 @@ const Register = () => {
                                 <h4 className='text-white text-center text-sm font-medium mt-5 mb-5'>Or login with</h4>
                             </div>
 
-                            <div className='flex justify-center items-center gap-2'>
-
-                                <button onClick={handleGoogleLogin} className="hover:bg-white text-white hover:transition-all hover:delay-100 hover:text-black rounded-md py-2 border border-white font-semibold cursor-pointer flex justify-center items-center w-2/5">
-                                    <FaGoogle />
-
-                                    <h5 className='ml-2 text-sm'>Google</h5>
-                                </button>
-
-                                <button onClick={handleGithubLogin} className="hover:bg-white text-white hover:transition-all hover:delay-100 hover:text-black rounded-md py-2 border border-white font-semibold cursor-pointer flex justify-center items-center w-2/5">
-                                    <FaGithub />
-
-
-                                    <h5 className='ml-2 text-sm'>Github</h5>
-                                </button>
-                            </div>
                         </form>
+                        <div className='flex justify-center items-center gap-2'>
+
+                            <button onClick={handleGoogleLogin} className="hover:bg-white text-white hover:transition-all hover:delay-100 hover:text-black rounded-md py-2 border border-white font-semibold cursor-pointer flex justify-center items-center w-2/5">
+                                <FaGoogle />
+
+                                <h5 className='ml-2 text-sm'>Google</h5>
+                            </button>
+
+                            <button onClick={handleGithubLogin} className="hover:bg-white text-white hover:transition-all hover:delay-100 hover:text-black rounded-md py-2 border border-white font-semibold cursor-pointer flex justify-center items-center w-2/5">
+                                <FaGithub />
+
+
+                                <h5 className='ml-2 text-sm'>Github</h5>
+                            </button>
+                        </div>
 
                     </div>
                 </div>

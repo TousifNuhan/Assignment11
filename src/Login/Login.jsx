@@ -2,34 +2,53 @@ import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { AuthContext } from '../Providers/AuthProvider';
+import toast from 'react-hot-toast';
 
 
 
 const Login = () => {
 
-    const location=useLocation()
+    const { loading,setLoading } = useContext(AuthContext)
+
+    // if (loading) {
+    //     return <div className='h-screen mx-auto flex justify-center items-center'>
+    //         <span className="loading loading-ring loading-xl "></span>
+    //     </div>;
+    // }
+
+    const location = useLocation()
     console.log(location)
-    const navigate=useNavigate()
+    const navigate = useNavigate()
 
-    const { signInWithEmailAndPASS, googleLogin,githubLogin } = useContext(AuthContext)
+    const { signInWithEmailAndPASS, googleLogin, githubLogin } = useContext(AuthContext)
 
-    const handleGithubLogin=()=>{
+    const handleGithubLogin = () => {
         githubLogin()
-        .then(result=>{
-            console.log(result.user)
-            navigate(location?.state?location.state:'/')
-        })
-        .catch(error=>console.error(error))
+            .then(result => {
+                console.log(result.user)
+                toast.success("Login successful!")
+                navigate(location?.state ? location.state : '/')
+            })
+            .catch(error => {
+                console.error(error)
+                toast.error("Login attempt failed")
+                // if (!loading) {
+                //     toast.error("Login attempt failed")
+
+                // }
+            })
     }
 
     const handleGoogleLogin = () => {
         googleLogin()
             .then(result => {
                 console.log(result.user)
-                navigate(location?.state?location.state:'/')
+                toast.success("Login successful!")
+                navigate(location?.state ? location.state : '/')
             })
             .catch(error => {
                 console.error(error)
+                toast.error("Login attempt failed")
             })
     }
 
@@ -45,11 +64,14 @@ const Login = () => {
         signInWithEmailAndPASS(email, password)
             .then(result => {
                 console.log(result.user)
-                navigate(location?.state?location.state:'/')
+                toast.success("Login successful!")
+                navigate(location?.state ? location.state : '/')
                 form.reset()
             })
             .catch(error => {
                 console.error(error)
+                toast.error("Login attempt failed")
+               
             })
     }
 
@@ -67,10 +89,10 @@ const Login = () => {
                     <div className='w-4/5 mx-auto'>
                         <form onSubmit={handleLogin} className='text-center'>
                             <label className="block">
-                                <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5' type="email" name='email' placeholder='E-mail Address' />
+                                <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5' type="email" name='email' placeholder='E-mail Address' required/>
                             </label>
                             <label className="mt-3 block">
-                                <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5 ' type="password" name='password' placeholder='Password' />
+                                <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5 ' type="password" name='password' placeholder='Password' required/>
                             </label>
 
 
@@ -82,6 +104,7 @@ const Login = () => {
                             <div>
                                 <h4 className='text-white text-center text-sm font-medium mt-5 mb-5'>Or login with</h4>
                             </div>
+                        </form>
                             <div className='flex justify-center items-center gap-2'>
 
                                 <button onClick={handleGoogleLogin} className="hover:bg-white text-white hover:transition-all hover:delay-100 hover:text-black rounded-md py-2 border border-white font-semibold cursor-pointer flex justify-center items-center w-2/5">
@@ -98,7 +121,6 @@ const Login = () => {
                                 </button>
 
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>

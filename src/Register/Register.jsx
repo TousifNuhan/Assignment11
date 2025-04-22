@@ -3,6 +3,7 @@ import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProvider';
 import toast from 'react-hot-toast';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
 
@@ -38,7 +39,6 @@ const Register = () => {
                 console.error(error)
                 toast.error("Registration attempt failed")
             })
-
     }
 
     const handleRegister = e => {
@@ -52,10 +52,19 @@ const Register = () => {
         //  console.log(name,email, password, PhotoURL)
 
         createWithEmailAndPASS(email, password)
+
             .then(result => {
                 console.log(result.user)
+                // updating the user with name and photoURL
+                 updateProfile(result.user, {
+                    displayName: name,
+                    photoURL:PhotoURL
+                 })
+                 .then(()=>console.log('profile updated'))
+                 .catch()
+
                 toast.success("Registration successful!")
-                navigate(location?.state ? location.state : '/')
+                // navigate(location?.state ? location.state : '/')
                 form.reset()
             })
 

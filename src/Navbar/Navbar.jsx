@@ -2,10 +2,15 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import { NavLink, useLocation } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProvider';
+import logo from '../assets/boy.png'
 
 const Navbar = () => {
 
   const { user, userSignOut, loading } = useContext(AuthContext)
+
+  if(loading){
+    return
+  }
 
   const handleLogout = () => {
     userSignOut()
@@ -33,6 +38,7 @@ const Navbar = () => {
   }, []);
 
   const location = useLocation();
+  const isHomePage = location.pathname === "/"
 
   const navBeforeLogin = <>
     {
@@ -66,8 +72,8 @@ const Navbar = () => {
           <div className="dropdown dropdown-end  lg:mr-3">
             <div tabIndex={0} role="" className=" ">
               <div className='avatar'>
-                <div className="w-12 rounded-full">
-                  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                <div className="w-12 rounded-full ">
+                  <img src={ user.photoURL } alt='Coming soon' />
                 </div>
               </div>
             </div>
@@ -88,7 +94,7 @@ const Navbar = () => {
   </>
 
   return (
-    <div className={`fixed top-0  w-full z-20 ${isScrolled ? 'bg-[#000000bf] shadow-md  ' : 'bg-transparent'} transition-all duration-500 `}>
+    <div className={`fixed top-0  w-full z-20 ${ !isHomePage || (isHomePage && isScrolled) ? 'bg-[#000000bf] shadow-md  ' : 'bg-transparent'} transition-all duration-500 `}>
       <div className="navbar">
         <div className="navbar-start w-4/5 items-center">
           <div className="dropdown ">

@@ -19,6 +19,7 @@ import Register from './Register/Register.jsx';
 import AuthProvider from './Providers/AuthProvider.jsx';
 import PrivateRoute from './Routes/PrivateRoute.jsx';
 import { Toaster } from 'react-hot-toast';
+import MappingAssignments from './Others/MappingAssignments.jsx';
 
 
 const router = createBrowserRouter([
@@ -32,19 +33,20 @@ const router = createBrowserRouter([
       },
       {
         path: "/assignments",
-        element: <PrivateRoute><Assignments></Assignments></PrivateRoute>
+        element: <Assignments></Assignments>,
+        loader:()=> fetch('http://localhost:5000/createAssignments')
       },
       {
         path: '/createAssignment',
-        element: <CreateAssignment></CreateAssignment>
+        element: <PrivateRoute><CreateAssignment></CreateAssignment></PrivateRoute>
       },
       {
         path: '/pendingAssignment',
-        element: <PendingAssignment></PendingAssignment>
+        element: <PrivateRoute><PendingAssignment></PendingAssignment></PrivateRoute>
       },
       {
         path: '/mySubmittedAssignments',
-        element: <MySubmittedAssignments></MySubmittedAssignments>
+        element: <PrivateRoute><MySubmittedAssignments></MySubmittedAssignments></PrivateRoute>
       },
       {
         path: "/login",
@@ -53,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>
+      },
+      {
+        path:'/mappingAssignments',
+        element:<MappingAssignments></MappingAssignments>
       }
 
     ]

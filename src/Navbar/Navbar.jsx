@@ -1,22 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProvider';
 import logo from '../assets/boy.png'
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
 
   const { user, userSignOut, loading } = useContext(AuthContext)
 
-  if(loading){
-    return
+  if (loading) {
+    return 
   }
 
   const handleLogout = () => {
     userSignOut()
       .then(result => {
-
         console.log(result.user)
+
+        toast.success("Logout Successfull")
+    
       })
       .catch(error => {
         console.error(error)
@@ -38,6 +41,7 @@ const Navbar = () => {
   }, []);
 
   const location = useLocation();
+ 
   const isHomePage = location.pathname === "/"
 
   const navBeforeLogin = <>
@@ -58,12 +62,16 @@ const Navbar = () => {
     }
   </>
 
+  
+
   const navAfterLogin2Parts = <>
     <NavLink to="/mySubmittedAssignments"><a className={`${location.pathname === "/mySubmittedAssignments" ? 'text-yellow-500' : ' text-black'} hover:text-yellow-500 font-semibold text-base text-center `}>Submitted Assignments</a></NavLink>
     <hr className='text-[#D2B48C] mt-1' />
     <NavLink to="/login" onClick={handleLogout}
-      className="border-2 border-white text-center text-base font-semibold text-black cursor-pointer hover:bg-white hover:text-yellow-500 rounded-4xl  mr-2">Logout</NavLink>
+      className="border-2 border-white text-center text-base font-semibold text-black cursor-pointer hover:bg-white hover:text-yellow-500 rounded-4xl mr-2">Logout</NavLink>
   </>
+
+  const [isDropDownVisible, setIsDropDownVisible] = useState(false)
 
   const navBeforeLogin1 = <>
     {
@@ -73,7 +81,7 @@ const Navbar = () => {
             <div tabIndex={0} role="" className=" ">
               <div className='avatar'>
                 <div className="w-12 rounded-full ">
-                  <img src={ user.photoURL } alt='Coming soon' />
+                  <img src={user.photoURL} alt='Coming soon' />
                 </div>
               </div>
             </div>
@@ -94,10 +102,10 @@ const Navbar = () => {
   </>
 
   return (
-    <div className={`fixed top-0  w-full z-20 ${ !isHomePage || (isHomePage && isScrolled) ? 'bg-[#000000bf] shadow-md  ' : 'bg-transparent'} transition-all duration-500 `}>
+    <div className={`fixed top-0  w-full z-20 ${!isHomePage || (isHomePage && isScrolled) ? 'bg-[#000000bf] shadow-md  ' : 'bg-transparent'} transition-all duration-500 `}>
       <div className="navbar">
         <div className="navbar-start w-4/5 items-center">
-          <div className="dropdown ">
+          <div onClick={() => setIsDropDownVisible(!isDropDownVisible)} className="dropdown ">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden group">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white hover:text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
             </div>

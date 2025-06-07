@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import Home from './Home/Home.jsx';
 
-
 import {
   createBrowserRouter,
   RouterProvider,
@@ -20,6 +19,8 @@ import AuthProvider from './Providers/AuthProvider.jsx';
 import PrivateRoute from './Routes/PrivateRoute.jsx';
 import { Toaster } from 'react-hot-toast';
 import MappingAssignments from './Others/MappingAssignments.jsx';
+
+import AssignmentDetails from './Others/AssignmentDetails.jsx';
 
 
 const router = createBrowserRouter([
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
       {
         path: '/mySubmittedAssignments',
         element: <PrivateRoute><MySubmittedAssignments></MySubmittedAssignments></PrivateRoute>
+        
       },
       {
         path: "/login",
@@ -59,6 +61,14 @@ const router = createBrowserRouter([
       {
         path:'/mappingAssignments',
         element:<MappingAssignments></MappingAssignments>
+      },
+      {
+        path:'/assignments/:id',
+        element:<PrivateRoute><AssignmentDetails></AssignmentDetails></PrivateRoute>,
+       loader:({params})=>fetch(`http://localhost:5000/createAssignments/${params.id}`)
+      },
+      {
+
       }
 
     ]

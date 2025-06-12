@@ -31,24 +31,34 @@ const AssignmentDetails = () => {
 
         console.log(File, TextArea)
 
+        const formData = new FormData()
+        formData.append("Name", Name)
+        formData.append("Email", Email)
+        formData.append("File", File)
+        formData.append("TextArea",TextArea)
+        formData.append("Status",Status)
+        formData.append("Title",Title)
+        formData.append("Marks",Marks)
+
+
         document.getElementById('modal').close()
 
         // cleared the modal form
         setFiles([])
         form.reset()
 
-        const submittedAssignmentDetails = {Name , Title, Marks, Email, File, TextArea, Status }
+        // const submittedAssignmentDetails = { Name, Title, Marks, Email, File, TextArea, Status }
 
         fetch('http://localhost:5000/submittedAssignments', {
             method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(submittedAssignmentDetails)
+            // headers: {
+            //     'content-type': 'application/json'
+            // },
+            body: formData
         })
             .then(res => res.json())
             .then(data => {
-
+               
                 console.log(data)
             })
 

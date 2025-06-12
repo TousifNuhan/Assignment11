@@ -24,7 +24,10 @@ const Assignments = () => {
             </div>
             <div className='grid grid-cols-3 gap-5 w-11/12 mx-auto mt-14'>
                 {
-                    datas.map(aData => <MappingAssignments key={aData._id} aData={aData}></MappingAssignments>)
+                    datas.map(aData => <MappingAssignments 
+                        key={aData._id}
+                         aData={aData}
+                         ></MappingAssignments>)
                 }
             </div>
         </div>

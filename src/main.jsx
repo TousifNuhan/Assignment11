@@ -21,6 +21,7 @@ import { Toaster } from 'react-hot-toast';
 import MappingAssignments from './Others/MappingAssignments.jsx';
 
 import AssignmentDetails from './Others/AssignmentDetails.jsx';
+import UpdateAssignment from './Others/UpdateAssignment.jsx';
 
 
 const router = createBrowserRouter([
@@ -61,6 +62,11 @@ const router = createBrowserRouter([
       {
         path:'/mappingAssignments',
         element:<MappingAssignments></MappingAssignments>
+      },
+      {
+        path:'/updateAssignments/:id',
+        element:<PrivateRoute><UpdateAssignment></UpdateAssignment></PrivateRoute>,
+        loader:({params})=>fetch(`http://localhost:5000/createAssignments/${params.id}`)
       },
       {
         path:'/assignments/:id',

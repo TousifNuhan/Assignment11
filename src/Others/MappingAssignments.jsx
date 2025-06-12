@@ -1,12 +1,69 @@
+import { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { AiOutlineEye } from "react-icons/ai";
 import { GoPencil } from "react-icons/go";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
+import { AuthContext } from "../Providers/AuthProvider";
+
+// or via CommonJS
+// const Swal = require('sweetalert2')
+
+// import Swal from 'sweetalert2/dist/sweetalert2.js'
+// import 'sweetalert2/src/sweetalert2.scss'
 
 const MappingAssignments = ({ aData }) => {
+  const { user } = useContext(AuthContext)
+  const navigate=useNavigate()
   const { _id, email, Title, Marks, dueDate, photoURL, DifficultyLevel, description } = aData
-  console.log()
+
   console.log(DifficultyLevel, _id)
+
+  const handleDelete = (id, email) => {
+    console.log(email)
+    console.log(user?.email)
+    if (user?.email === email) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      })
+        .then((result) => {
+          if (result.isConfirmed) {
+            fetch(`http://localhost:5000/createAssignments/${id}`, {
+              method: 'DELETE',
+            })
+              .then(res => res.json())
+              .then(data => {
+                if (data.deletedCount > 0) {
+                  toast.success('Assignment Deleted Successfully')
+                }
+              })
+          }
+        })
+
+    }
+    else if(!user){
+      toast.error('At first you have to login')
+      navigate('/login')
+    }
+    else{
+      toast.error("Invalid User")
+
+    }
+    
+
+  }
+
+  // const datas=useLoaderData()
+  // console.log(datas)
+
+
   return (
     <div>
       <div className="border-2 border-[#e4e4e7] rounded-lg mb-10">
@@ -32,13 +89,17 @@ const MappingAssignments = ({ aData }) => {
               </div>
             </Link>
             <div>
-              <button className='flex justify-between items-center py-2 px-6 cursor-pointer rounded-sm border border-[#fcb700] text-[#fcb700] hover:text-[hsl(44,99%,46%)] min-w-28'>
-                <GoPencil className="w-4 h-5" />
-                <p className="ml-2 text-sm font-semibold">Update</p>
-              </button>
+
+              <Link to={`/updateAssignments/${_id}`}>
+                <button className='flex justify-between items-center py-2 px-6 cursor-pointer rounded-sm border border-[#fcb700] text-[#fcb700] hover:text-[hsl(44,99%,46%)] min-w-28'>
+                  <GoPencil className="w-4 h-5" />
+                  <p className="ml-2 text-sm font-semibold">Update</p>
+                </button>
+                </Link>
+
             </div>
             <div>
-              <button className='flex justify-between items-center py-2 px-6 cursor-pointer rounded-sm border border-[#ef4444] text-[#ef4444] hover:text-[rgb(248,40,40)] min-w-28'>
+              <button onClick={() => handleDelete(_id, email)} className='flex justify-between items-center py-2 px-6 cursor-pointer rounded-sm border border-[#ef4444] text-[#ef4444] hover:text-[rgb(248,40,40)] min-w-28'>
                 <RiDeleteBinLine className="w-4 h-5" />
                 <p className="ml-2 text-sm font-semibold ">Delete</p>
               </button>

@@ -13,14 +13,14 @@ const MySubmittedAssignments = () => {
                 console.log(data)
                 setAssignments(data)
             })
-    }, [user?.email])
+    }, [user?.email,assignments])
 
 
     return (
         <div className='mt-28 mb-5 min-h-screen '>
             <div className='text-center mb-8'>
-                <h1 className='text-3xl font-semibold'>My Submitted Assignments</h1>
-                <p className='text-sm w-4/5 mx-auto font-medium mt-3'>Welcome to your submitted assignments dashboard. Here, you can track the progress of the assignments you've taken, review their statuses, and view any feedback or marks you've received. Stay updated on which tasks are still under review and which have been graded. This section helps you monitor your growth and contributions in the group study environment.</p>
+                <h1 className="text-[#1a1d27] font-bold text-xl md:text-3xl">My Submitted Assignments</h1>
+                <p className="text-center text-[#03071299] font-semibold text-sm w-4/5 md:w-4/5 pt-1 md:mt-2 mb-7 mx-auto">Welcome to your submitted assignments dashboard. Here, you can track the progress of the assignments you've taken, review their statuses, and view any feedback or marks you've received. Stay updated on which tasks are still under review and which have been graded. This section helps you monitor your growth and contributions in the group study environment.</p>
             </div>
             <div className="overflow-x-auto ">
                 <table className="table ">
@@ -46,8 +46,8 @@ const MySubmittedAssignments = () => {
                                     <td>{assignment.Title}</td>
                                     <td>{assignment.Status}</td>
                                     <td>{assignment.Marks}</td>
-                                    <td>{assignment.getMarks || 'N/A'}</td>
-                                    <td>{assignment.feedback || 'N/A'}</td>
+                                    <td>{assignment.GetMarks || 'N/A'}</td>
+                                    <td>{assignment.Feedback || 'N/A'}</td>
 
                                 </tr>
                             )

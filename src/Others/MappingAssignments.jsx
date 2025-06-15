@@ -54,10 +54,8 @@ const MappingAssignments = ({ aData }) => {
     }
     else{
       toast.error("Invalid User")
-
     }
     
-
   }
 
   // const datas=useLoaderData()

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
+import axios from 'axios';
 
 const MySubmittedAssignments = () => {
     const { user } = useContext(AuthContext)
@@ -7,13 +8,21 @@ const MySubmittedAssignments = () => {
     const [assignments, setAssignments] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/mySubmittedAssignments?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setAssignments(data)
+
+        //eta first a krslm then axios dye update kore felsi 2 tai same
+
+        // fetch(`http://localhost:5000/mySubmittedAssignments?email=${user?.email}`)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data)
+        //         setAssignments(data)
+        //     })
+
+        axios.get(`http://localhost:5000/mySubmittedAssignments?email=${user?.email}`, {withCredentials: true})
+            .then(res => {
+                setAssignments(res.data)
             })
-    }, [user?.email,assignments])
+    }, [])
 
 
     return (

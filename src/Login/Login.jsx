@@ -5,12 +5,13 @@ import { AuthContext } from '../Providers/AuthProvider';
 import toast from 'react-hot-toast';
 import { PiEyeSlash } from "react-icons/pi";
 import { PiEyeLight } from "react-icons/pi";
+import axios from 'axios';
 
 
 const Login = () => {
 
     const { loading, setLoading } = useContext(AuthContext)
-    const [showPassword,setShowPassword]=useState(false)
+    const [showPassword, setShowPassword] = useState(false)
 
     const location = useLocation()
     console.log(location)
@@ -42,7 +43,7 @@ const Login = () => {
                 navigate(location?.state ? location.state : '/')
             })
             .catch(error => {
-               
+
                 console.error(error)
                 toast.error("Login attempt failed")
             })
@@ -64,9 +65,17 @@ const Login = () => {
         signInWithEmailAndPASS(email, password)
             .then(result => {
                 console.log(result.user)
-                navigate(location?.state ? location.state : '/')
+
                 toast.success("Login successful!")
                 form.reset()
+                const user = { email }
+                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.success) {
+                             navigate(location?.state ? location.state : '/')
+                        }
+                    })
             })
             .catch(error => {
                 // console.error(error)
@@ -97,11 +106,11 @@ const Login = () => {
                                     name='password'
                                     placeholder='Password'
                                     required />
-                                <span onClick={()=>setShowPassword(!showPassword)}>
+                                <span onClick={() => setShowPassword(!showPassword)}>
                                     {
                                         showPassword ?
-                                        <PiEyeLight className='h-5 w-5 absolute top-2.5 right-5 text-white' /> :
-                                        <PiEyeSlash className='h-5 w-5 absolute top-2.5 right-5 text-white' />
+                                            <PiEyeLight className='h-5 w-5 absolute top-2.5 right-5 text-white' /> :
+                                            <PiEyeSlash className='h-5 w-5 absolute top-2.5 right-5 text-white' />
                                     }
                                 </span>
                             </label>

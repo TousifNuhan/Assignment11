@@ -53,22 +53,24 @@ const CreateAssignment = () => {
     }
 
     return (
-        <div className='pt-[8%]'>
+        <div className='pt-[8%] min-h-screen bg-base-100 text-base-content'>
             <div className="w-11/12 flex flex-col items-center mx-auto my-3">
-                <h1 className="text-[#1a1d27] font-bold text-xl md:text-3xl">Create a New Assignment</h1>
-                <p className="text-center text-[#03071299] font-semibold text-sm w-4/5 md:w-3/5 pt-1 md:mt-1 mb-7">Get started by setting up an assignment for your study group! Fill out the details below to help your peers stay on track and collaborate effectively.</p>
+                <h1 className="text-base-content font-bold text-xl md:text-3xl">Create a New Assignment</h1>
+                {/* <h1 className="text-base-content text-3xl font-bold ">Create a New Assignment</h1> */}
+                <p className="text-center text-gray-500 font-semibold text-sm w-4/5 md:w-3/5 pt-1 md:mt-1 mb-7">Get started by setting up an assignment for your study group! Fill out the details below to help your peers stay on track and collaborate effectively.</p>
+                {/* <p className="text-base-content"> aaas</p> */}
             </div>
             <form onSubmit={handleCreateAssignmentForm} className='md:mt-0 mt-6 mb-10'>
                 <div className=" border-2 border-[#e4e4e7] hover:border-gray-400 hover:delay-150 hover:duration-200 rounded-2xl w-3/5 mx-auto p-6 md:p-10">
 
                     <div >
-                        <h1 className="text-[#030712] font-bold text-2xl mb-4 pb-3">Create New Assignment</h1>
+                        <h1 className="text-base-content font-bold text-2xl mb-4 pb-3">Create New Assignment</h1>
                     </div>
 
                     <div className="md:grid grid-cols-2 items-center ">
                         <div className="flex-1 mr-10">
                             <label className="label">
-                                <span className="label-text text-[#2c3345] text-base font-semibold mb-2">Title</span>
+                                <span className="label-text text-gray-500 text-base font-semibold mb-2">Title</span>
                             </label>
                             <input
                                 type="text"
@@ -79,18 +81,19 @@ const CreateAssignment = () => {
                         </div>
                         <div className="flex-1">
                             <label className="label">
-                                <span className="label-text text-[#2c3345] text-base font-semibold mb-2">Marks</span>
+                                <span className="label-text text-gray-500 text-base font-semibold mb-2">Marks</span>
                             </label>
                             <input
                                 type="number"
                                 placeholder="Enter Marks"
                                 name="Marks"
+                                min={1}
                                 className="border-2 py-3 px-3 rounded-lg
                                 border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-full max-w-xl" />
                         </div>
                         <div className="flex flex-col mt-2">
                             <label className="label">
-                                <span className="label-text text-[#2c3345] text-base font-semibold mb-2">Due Date</span>
+                                <span className="label-text text-gray-500 text-base font-semibold mb-2">Due Date</span>
                             </label>
                             <DatePicker
                                 placeholderText="Select due date"
@@ -111,7 +114,7 @@ const CreateAssignment = () => {
 
                     <div className="my-4">
                         <label className="label">
-                            <span className="label-text text-[#2c3345] text-base font-semibold mb-2 ">ImageURL</span>
+                            <span className="label-text text-gray-500 text-base font-semibold mb-2 ">ImageURL</span>
                         </label>
                         <input
                             type="url"
@@ -123,7 +126,7 @@ const CreateAssignment = () => {
 
                     <div className="">
                         <div className="space-y-2">
-                            <label htmlFor="difficulty " className="label-text text-[#2c3345] text-base font-semibold ">Difficulty Level</label>
+                            <label htmlFor="difficulty " className="label-text text-gray-500 text-base font-semibold ">Difficulty Level</label>
                             <div className=" flex relative">
                                 <select
                                     id="difficulty"
@@ -146,7 +149,7 @@ const CreateAssignment = () => {
 
                     <div>
                         <label className="label">
-                            <span className="label-text text-[#2c3345] text-base font-semibold mt-3">Description</span>
+                            <span className="label-text text-gray-500 text-base font-semibold mt-3">Description</span>
                         </label>
                         <div>
                             <textarea

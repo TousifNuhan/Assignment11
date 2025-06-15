@@ -49,22 +49,22 @@ const UpdateAssignment = () => {
     }
     return (
         <div>
-            <div className='pt-[8%]'>
+            <div className='pt-[8%] min-h-screen bg-base-100 '>
                 <div className="w-11/12 flex flex-col items-center mx-auto my-3">
-                    <h1 className="text-[#1a1d27] font-bold text-xl md:text-3xl">Update an Assignment</h1>
-                    <p className="text-center text-[#03071299] font-semibold text-sm w-4/5 md:w-3/5 pt-1 md:mt-1 mb-7">Keep your study group organized and informed by updating the details of this assignment. Use the form below to make any necessary changes—whether it's adjusting the due date, modifying the title, updating the marks, or revising the description. Keeping assignments up-to-date ensures everyone stays aligned and can collaborate effectively.</p>
+                    <h1 className="text-base-content font-bold text-xl md:text-3xl">Update an Assignment</h1>
+                    <p className="text-center text-gray-500 font-semibold text-sm w-4/5 md:w-3/5 pt-1 md:mt-1 mb-7">Keep your study group organized and informed by updating the details of this assignment. Use the form below to make any necessary changes—whether it's adjusting the due date, modifying the title, updating the marks, or revising the description. Keeping assignments up-to-date ensures everyone stays aligned and can collaborate effectively.</p>
                 </div>
                 <form onSubmit={handleUpdateAssignmentForm} className='md:mt-0 mt-6 mb-10'>
                     <div className=" border-2 border-[#e4e4e7] hover:border-gray-400 hover:delay-150 hover:duration-200 rounded-2xl w-3/5 mx-auto p-6 md:p-10">
 
                         <div >
-                            <h1 className="text-[#030712] font-bold text-2xl mb-4 pb-3">Update Assignment</h1>
+                            <h1 className="text-base-content font-bold text-2xl mb-4 pb-3">Update Assignment</h1>
                         </div>
 
                         <div className="md:grid grid-cols-2 items-center ">
                             <div className="flex-1 mr-10">
                                 <label className="label">
-                                    <span className="label-text text-[#2c3345] text-base font-semibold mb-2">Title</span>
+                                    <span className="label-text text-gray-500 text-base font-semibold mb-2">Title</span>
                                 </label>
                                 <input
                                     type="text"
@@ -72,11 +72,11 @@ const UpdateAssignment = () => {
                                     name="Title"
                                     defaultValue={Title}
                                     className="border-2 py-3 px-3 rounded-lg
-                                            border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-full max-w-xl"/>
+                                            border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-full max-w-xl text-base-content"/>
                             </div>
                             <div className="flex-1">
                                 <label className="label">
-                                    <span className="label-text text-[#2c3345] text-base font-semibold mb-2">Marks</span>
+                                    <span className="label-text text-gray-500 text-base font-semibold mb-2">Marks</span>
                                 </label>
                                 <input
                                     type="number"
@@ -84,17 +84,17 @@ const UpdateAssignment = () => {
                                     name="Marks"
                                     defaultValue={Marks}
                                     className="border-2 py-3 px-3 rounded-lg
-                                            border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-full max-w-xl" />
+                                            border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-full max-w-xl text-base-content" />
                             </div>
                             <div className="flex flex-col mt-2">
                                 <label className="label">
-                                    <span className="label-text text-[#2c3345] text-base font-semibold mb-2">Due Date</span>
+                                    <span className="label-text text-gray-500 text-base font-semibold mb-2">Due Date</span>
                                 </label>
                                 <DatePicker
                                     placeholderText={dueDate}
                                     name="dueDate"
 
-                                    className="border-2 py-3 px-3 rounded-lg
+                                    className="border-2 py-3 px-3 rounded-lg text-base-content
                                             border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-2/3 " selected={startDate}
                                     onChange={(date) => setStartDate(date)} />
 
@@ -105,7 +105,7 @@ const UpdateAssignment = () => {
 
                         <div className="my-4">
                             <label className="label">
-                                <span className="label-text text-[#2c3345] text-base font-semibold mb-2 ">ImageURL</span>
+                                <span className="label-text text-gray-500 text-base font-semibold mb-2 ">ImageURL</span>
                             </label>
                             <input
                                 type="url"
@@ -113,17 +113,17 @@ const UpdateAssignment = () => {
                                 name="photoURL"
                                 defaultValue={photoURL}
                                 className="border-2 py-3 px-3 rounded-lg
-                                            border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-full " />
+                                            border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-full text-base-content" />
                         </div>
 
                         <div className="">
                             <div className="space-y-2">
-                                <label htmlFor="difficulty " className="label-text text-[#2c3345] text-base font-semibold ">Difficulty Level</label>
+                                <label htmlFor="difficulty " className="label-text text-gray-500 text-base font-semibold ">Difficulty Level</label>
                                 <div className=" flex relative">
                                     <select
                                         id="difficulty"
                                         className="border-2 py-3 px-3 pl-3 appearance-none rounded-lg mt-2 
-                                            border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-full"
+                                            border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-full text-gray-500 "
                                         required
                                         name="DifficultyLevel"
                                         defaultValue={DifficultyLevel}
@@ -142,7 +142,7 @@ const UpdateAssignment = () => {
 
                         <div>
                             <label className="label">
-                                <span className="label-text text-[#2c3345] text-base font-semibold mt-3">Description</span>
+                                <span className="label-text text-gray-500 text-base font-semibold mt-3">Description</span>
                             </label>
                             <div>
                                 <textarea
@@ -151,7 +151,7 @@ const UpdateAssignment = () => {
                                     name="description"
                                     defaultValue={description}
                                     className="border-2 py-3 px-3 pl-3 appearance-none rounded-lg mt-2 
-                                            border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-full max-w-xl" />
+                                            border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-full max-w-xl text-base-content" />
                             </div>
                         </div>
 

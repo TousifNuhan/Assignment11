@@ -14,7 +14,7 @@ const Community = () => {
                 <img src="https://staco-react.vercel.app/assets/right_obj-CaxCqwq_.png" alt="" />
             </div>
             <div className='absolute top-1/4 text-center w-full'>
-                <h1 className='text-5xl font-bold leading-16'>Join our 250+ Community <br />
+                <h1 className='text-5xl font-bold leading-16 text-base-content'>Join our 250+ Community <br />
                     Let’s started</h1>
 
                 <form action="" className='flex justify-center items-center mt-16 max-w-[35%] mx-auto '>

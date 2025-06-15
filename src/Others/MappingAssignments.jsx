@@ -74,7 +74,7 @@ const MappingAssignments = ({ aData }) => {
         <div className="w-11/12 mx-auto">
           <div className="flex justify-between items-center mt-6">
             <h3 className="text-xl font-semibold">{Title}</h3>
-            <p className="text-xs font-semibold border rounded-2xl px-2 py-1 border-[#e4e4e7] bg-white">{Marks} marks</p>
+            <p className="text-xs font-semibold border rounded-2xl px-2 py-1 border-[#e4e4e7] bg-white text-black">{Marks} marks</p>
           </div>
           <div className=" mt-3 mb-5">
             <p className="text-[#71717a] text-sm font-semibold">Due: {dueDate}</p>

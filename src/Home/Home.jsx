@@ -10,11 +10,11 @@ import { AuthContext } from '../Providers/AuthProvider';
 const Home = () => {
     const { loading } = useContext(AuthContext)
 
-    if (loading) {
-        return <div className='h-screen mx-auto flex justify-center items-center'>
-            <span className="loading loading-ring loading-xl "></span>
-        </div>;
-    }
+    // if (loading) {
+    //     return <div className='h-screen mx-auto flex justify-center items-center'>
+    //         <span className="loading loading-ring loading-xl "></span>
+    //     </div>;
+    // }
     return (
         <div >
             <App></App>

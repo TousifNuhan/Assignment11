@@ -6,7 +6,7 @@ const Feature = () => {
         <div className='w-4/5 mx-auto my-20'>
             <div>
                 <h4 className='text-[#0095ff] text-xl tracking-widest font-semibold'>Features</h4>
-                <h1 className=' font-bold leading-12 my-4'><span className='text-5xl'>One Platform for</span> <br /> <span className='text-5xl'>Teamwork <span id='learn' className='font-primary'>Learning </span>  & productivity </span></h1>
+                <h1 className='text-base-content font-bold leading-12 my-4'><span className='text-5xl'>One Platform for</span> <br /> <span className='text-5xl'>Teamwork <span id='learn' className='font-primary'>Learning </span>  & productivity </span></h1>
             </div>
 
             <div className='flex justify-center items-center gap-8 box-border my-10'>

@@ -17,10 +17,10 @@ const MySubmittedAssignments = () => {
 
 
     return (
-        <div className='mt-28 mb-5 min-h-screen '>
+        <div className='mt-28 mb-5 min-h-screen bg-base-100 text-base-content'>
             <div className='text-center mb-8'>
-                <h1 className="text-[#1a1d27] font-bold text-xl md:text-3xl">My Submitted Assignments</h1>
-                <p className="text-center text-[#03071299] font-semibold text-sm w-4/5 md:w-4/5 pt-1 md:mt-2 mb-7 mx-auto">Welcome to your submitted assignments dashboard. Here, you can track the progress of the assignments you've taken, review their statuses, and view any feedback or marks you've received. Stay updated on which tasks are still under review and which have been graded. This section helps you monitor your growth and contributions in the group study environment.</p>
+                <h1 className="text-base-content font-bold text-xl md:text-3xl">My Submitted Assignments</h1>
+                <p className="text-center text-gray-500 font-semibold text-sm w-4/5 md:w-4/5 pt-1 md:mt-2 mb-7 mx-auto">Welcome to your submitted assignments dashboard. Here, you can track the progress of the assignments you've taken, review their statuses, and view any feedback or marks you've received. Stay updated on which tasks are still under review and which have been graded. This section helps you monitor your growth and contributions in the group study environment.</p>
             </div>
             <div className="overflow-x-auto ">
                 <table className="table ">

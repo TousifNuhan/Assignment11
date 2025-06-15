@@ -9,9 +9,9 @@ const Navbar = () => {
 
   const { user, userSignOut, loading } = useContext(AuthContext)
 
-  if (loading) {
-    return 
-  }
+  // if (loading) {
+  //   return 
+  // }
 
   const handleLogout = () => {
     userSignOut()
@@ -19,7 +19,7 @@ const Navbar = () => {
         console.log(result.user)
 
         toast.success("Logout Successfull")
-    
+
       })
       .catch(error => {
         console.error(error)
@@ -40,8 +40,23 @@ const Navbar = () => {
     };
   }, []);
 
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme") || "light";
+    setTheme(storedTheme);
+    document.documentElement.setAttribute("data-theme", storedTheme);
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
+  };
+
   const location = useLocation();
- 
+
   const isHomePage = location.pathname === "/"
 
   const navBeforeLogin = <>
@@ -62,14 +77,36 @@ const Navbar = () => {
     }
   </>
 
-  
 
   const navAfterLogin2Parts = <>
     <NavLink to="/mySubmittedAssignments"><a className={`${location.pathname === "/mySubmittedAssignments" ? 'text-yellow-500' : ' text-black'} hover:text-yellow-500 font-semibold text-base text-center `}>Submitted Assignments</a></NavLink>
     <hr className='text-[#D2B48C] mt-1' />
     <NavLink to="/login" onClick={handleLogout}
-      className="border-2 border-white text-center text-base font-semibold text-black cursor-pointer hover:bg-white hover:text-yellow-500 rounded-4xl mr-2">Logout</NavLink>
+      className=" text-center text-base font-semibold text-base-content cursor-pointer  hover:text-yellow-500 rounded-4xl mr-2">Logout</NavLink>
   </>
+
+  const lightToDark = (
+    <label className="flex cursor-pointer gap-2 items-center mr-4">
+      {/* Light icon */}
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="5" />
+        <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
+      </svg>
+
+      <input
+        type="checkbox"
+        checked={theme === "dark"}
+        onChange={toggleTheme}
+        className="toggle bg-white border-white"
+      />
+
+      {/* Dark icon */}
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </svg>
+    </label>
+  );
+
 
   const [isDropDownVisible, setIsDropDownVisible] = useState(false)
 
@@ -135,6 +172,9 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-end">
+          {
+            lightToDark
+          }
           {
             navBeforeLogin1
           }

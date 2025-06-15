@@ -1,13 +1,16 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProvider';
 import toast from 'react-hot-toast';
 import { updateProfile } from 'firebase/auth';
+import { PiEyeSlash } from "react-icons/pi";
+import { PiEyeLight } from "react-icons/pi";
 
 const Register = () => {
 
-    const { user, loading,setLoading } = useContext(AuthContext)
+    const { user, loading, setLoading } = useContext(AuthContext)
+    const [showPassword, setShowPassword] = useState(false)
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -51,17 +54,35 @@ const Register = () => {
         const PhotoURL = form.PhotoURL.value
         //  console.log(name,email, password, PhotoURL)
 
+        if (password.length < 6) {
+            toast.error("Password should be more than 6 characters")
+            return
+        }
+        else if (!/[A-Z]/.test(password)) {
+            toast.error("You must have to give atleast one uppercase letter")
+            return
+        }
+        else if (!/[0-9]/.test(password)) {
+            toast.error("You must have to give atleast one number")
+            return
+        }
+        else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+            toast.error("You must have to give atleast one special character")
+            return
+        }
+
+
         createWithEmailAndPASS(email, password)
 
             .then(result => {
                 console.log(result.user)
                 // updating the user with name and photoURL
-                 updateProfile(result.user, {
+                updateProfile(result.user, {
                     displayName: name,
-                    photoURL:PhotoURL
-                 })
-                 .then(()=>console.log('profile updated'))
-                 .catch()
+                    photoURL: PhotoURL
+                })
+                    .then(() => console.log('profile updated'))
+                    .catch()
 
                 toast.success("Registration successful!")
                 // navigate(location?.state ? location.state : '/')
@@ -101,8 +122,19 @@ const Register = () => {
                                 <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5 ' type="url" name='PhotoURL' placeholder='PhotoURL' required />
                             </label>
 
-                            <label className="mt-3 block">
-                                <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5 ' type="password" name='password' placeholder='Password' required />
+                            <label className="mt-3 block relative w-4/5 mx-auto">
+                                <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5 '
+                                    type={showPassword ? "text" : "password"}
+                                    name='password'
+                                    placeholder='Password'
+                                    required />
+                                <span onClick={() => setShowPassword(!showPassword)}>
+                                    {
+                                        showPassword ?
+                                            <PiEyeLight className='h-5 w-5 absolute top-2.5 right-5 text-white' /> :
+                                            <PiEyeSlash className='h-5 w-5 absolute top-2.5 right-5 text-white' />
+                                    }
+                                </span>
                             </label>
 
 

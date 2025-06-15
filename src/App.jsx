@@ -48,7 +48,7 @@ function App() {
 
         // navigation={true}
         modules={[Autoplay, Navigation]}
-        className="mySwiper mb-16 min-h-full relative  "
+        className="mySwiper min-h-full relative  "
       >
         <SwiperSlide >
           <div

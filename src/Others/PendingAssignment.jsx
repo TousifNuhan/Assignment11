@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import toast from "react-hot-toast";
 const PendingAssignment = () => {
     const [allAssignments, setAllAssignments] = useState([])
     const [selectedAssignment, setSelectedAssignment] = useState([])
@@ -22,22 +22,43 @@ const PendingAssignment = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        
+
         const form = e.target
+        const Status = 'Completed'
         const GetMarks = form.GetMarks.value
         const Feedback = form.Feedback.value
 
+        // form.reset()
+
         console.log(GetMarks, Feedback)
 
-        
+        const markingUpdated = { Status, GetMarks, Feedback }
+
+        document.getElementById('modal2').close()
+        form.reset()
+
+        fetch(`http://localhost:5000/submittedAssignments/${selectedAssignment._id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(markingUpdated)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+             toast.success('Feedback and marks submitted!')
+            })
     }
 
+   
+
     return (
-        <div className="mt-28 min-h-screen">
+        <div className="mt-28 min-h-screen  bg-base-100 text-base-content">
             <div>
                 <div className='text-center mb-8'>
-                    <h1 className="text-[#1a1d27] font-bold text-xl md:text-3xl">Pending Assignments</h1>
-                    <p className="text-center text-[#03071299] font-semibold text-sm w-4/5 md:w-4/5 pt-1 md:mt-2 mb-7 mx-auto">This section displays all submitted assignments that are currently waiting for review and grading. As part of the collaborative learning process, you can view your peers’ work, assess their submissions, and provide constructive feedback along with marks. Use this page to help maintain a fair and supportive group study environment by evaluating pending tasks responsibly.</p>
+                    <h1 className="text-base-content font-bold text-xl md:text-3xl">Pending Assignments</h1>
+                    <p className="text-center text-gray-500 font-semibold text-sm w-4/5 md:w-4/5 pt-1 md:mt-2 mb-7 mx-auto">This section displays all submitted assignments that are currently waiting for review and grading. As part of the collaborative learning process, you can view your peers’ work, assess their submissions, and provide constructive feedback along with marks. Use this page to help maintain a fair and supportive group study environment by evaluating pending tasks responsibly.</p>
                 </div>
             </div>
             <div className="overflow-x-auto">
@@ -65,44 +86,50 @@ const PendingAssignment = () => {
                                     <td><button type="submit" onClick={() => openModal(assignment)} className="md:mt-0 mt-3 px-6 py-3 mr-1 text-white bg-sky-500 hover:bg-sky-700 text-sm font-semibold rounded-md cursor-pointer">Give mark</button>
                                         <dialog id="modal2" className="modal">
                                             <div className="modal-box">
-                                                <form onSubmit={ handleSubmit}  >
+                                                <form onSubmit={handleSubmit}  >
                                                     {/* if there is a button in form, it will close the modal */}
                                                     <form method="dialog">
                                                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                                     </form>
 
                                                     <div>
-                                                        <h3 className="font-semibold text-base mb-1 text-[#2c3345]">Evaluate Submission: </h3>
+                                                        <h3 className="font-semibold text-base mb-1 text-gray-500">Evaluate Submission: </h3>
                                                         <a href={`http://localhost:5000${selectedAssignment.FileURL}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
                                                             View Document
                                                         </a>
                                                     </div>
                                                     <div className="mt-3">
-                                                        <h3 className="font-semibold text-base mb-1 text-[#2c3345]">Note From Examine: </h3>
+                                                        <h3 className="font-semibold text-base mb-1 text-gray-500">Note From Examine: </h3>
                                                         <p>{selectedAssignment.TextArea}</p>
                                                     </div>
                                                     <div className="mt-3">
                                                         <label className="label block mb-2">
-                                                            <span className="label-text text-[#2c3345] text-base font-semibold mb-2">Marks</span>
+                                                            <span className="label-text text-gray-500 text-base font-semibold mb-2">Marks</span>
                                                         </label>
                                                         <input
                                                             type="number"
                                                             placeholder="Enter Marks"
+                                                            min={0}
+                                                            max={selectedAssignment.Marks}
+                                                            required
                                                             name="GetMarks"
                                                             className="border-2 py-3 px-3 rounded-lg
                                 border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-4/5" />
                                                     </div>
                                                     <div className="mt-3">
                                                         <label className="label block mb-2">
-                                                            <span className="label-text text-[#2c3345] text-base font-semibold mb-2">Feedback</span>
+                                                            <span className="label-text text-gray-500 text-base font-semibold mb-2">Feedback</span>
                                                         </label>
-                                                        <textarea name="Feedback" placeholder="Give your feedback" className="focus:outline-none w-full rounded-lg border-2 border-[#e4e4e7]  focus:border-gray-400 pl-2 pt-2"></textarea>
+                                                        <textarea 
+                                                        name="Feedback"
+                                                        required
+                                                        placeholder="Give your feedback" className="focus:outline-none w-full rounded-lg border-2 border-[#e4e4e7]  focus:border-gray-400 pl-2 pt-2"></textarea>
 
                                                     </div>
 
 
                                                     <div className="mt-2">
-                                                        <button type="submit" className="btn btn-neutral btn-outline">Submit</button>
+                                                        <button type="submit" className="btn  btn-outline">Submit</button>
                                                     </div>
 
 

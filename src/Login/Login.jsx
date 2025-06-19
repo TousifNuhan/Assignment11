@@ -6,11 +6,13 @@ import toast from 'react-hot-toast';
 import { PiEyeSlash } from "react-icons/pi";
 import { PiEyeLight } from "react-icons/pi";
 import axios from 'axios';
+import useAuth from '../Hooks/useAuth';
 
 
 const Login = () => {
 
-    const { loading, setLoading } = useContext(AuthContext)
+    // const { loading, setLoading } =useContext(AuthContext)
+    const { loading, setLoading } = useAuth()
     const [showPassword, setShowPassword] = useState(false)
 
     const location = useLocation()
@@ -56,26 +58,21 @@ const Login = () => {
         const email = form.email.value
         const password = form.password.value
 
-        // if(loading){
-        //     return
-        // }
-
-        // console.log(email,password)
-
         signInWithEmailAndPASS(email, password)
             .then(result => {
                 console.log(result.user)
 
                 toast.success("Login successful!")
                 form.reset()
-                const user = { email }
-                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
-                    .then(res => {
-                        console.log(res.data)
-                        if (res.data.success) {
-                             navigate(location?.state ? location.state : '/')
-                        }
-                    })
+                // const user = { email }
+                // axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                //     //{withCredentials: true } browser a cookie ta ke set krbe 
+                //     .then(res => {
+                //         console.log(res.data)
+                //         if (res.data.success) {
+                //             navigate(location?.state ? location.state : '/')
+                //         }
+                //     })
             })
             .catch(error => {
                 // console.error(error)

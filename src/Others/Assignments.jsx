@@ -2,10 +2,12 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import { useLoaderData } from 'react-router-dom';
 import MappingAssignments from './MappingAssignments';
+import useAuth from '../Hooks/useAuth';
 
 const Assignments = () => {
 
-    const { loading, setLoading } = useContext(AuthContext)
+    // const { loading, setLoading } = useContext(AuthContext)
+    const { loading, setLoading } = useAuth()
 
     const datas = useLoaderData()
 

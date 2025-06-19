@@ -4,10 +4,12 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProvider';
 import logo from '../assets/boy.png'
 import toast from 'react-hot-toast';
+import useAuth from '../Hooks/useAuth';
 
 const Navbar = () => {
 
-  const { user, userSignOut, loading } = useContext(AuthContext)
+  // const { user, userSignOut, loading } = useContext(AuthContext)
+  const { user, userSignOut, loading } = useAuth()
 
   // if (loading) {
   //   return 

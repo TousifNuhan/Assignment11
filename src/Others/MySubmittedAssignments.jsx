@@ -1,9 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import axios from 'axios';
+import useAuth from '../Hooks/useAuth';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 const MySubmittedAssignments = () => {
-    const { user } = useContext(AuthContext)
+    // const { user } = useContext(AuthContext)
+    const { user } = useAuth()
+    const axiosSecure = useAxiosSecure()
+    // console.log(user?.email)
 
     const [assignments, setAssignments] = useState([])
 
@@ -18,10 +23,17 @@ const MySubmittedAssignments = () => {
         //         setAssignments(data)
         //     })
 
-        axios.get(`http://localhost:5000/mySubmittedAssignments?email=${user?.email}`, {withCredentials: true})
+        // axios.get(`http://localhost:5000/mySubmittedAssignments?email=${user?.email}`, {withCredentials: true})
+        //     .then(res => {
+        //         setAssignments(res.data)
+        //     })
+
+        axiosSecure.get(`/mySubmittedAssignments?email=${user?.email}`)
             .then(res => {
                 setAssignments(res.data)
             })
+
+
     }, [])
 
 

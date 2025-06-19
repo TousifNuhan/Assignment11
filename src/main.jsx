@@ -71,7 +71,7 @@ const router = createBrowserRouter([
       {
         path:'/assignments/:id',
         element:<PrivateRoute><AssignmentDetails></AssignmentDetails></PrivateRoute>,
-       loader:({params})=>fetch(`http://localhost:5000/createAssignments/${params.id}`)
+       loader:({params})=>fetch(`http://localhost:5000/createAssignments/${params.id}`,{credentials:'include'})
       },
       {
 

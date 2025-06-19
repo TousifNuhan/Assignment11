@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import { Navigate, useLocation } from 'react-router-dom';
+import useAuth from '../Hooks/useAuth';
 
 const PrivateRoute = ({children}) => {
-    const {user,loading} = useContext(AuthContext)
+    // const {user,loading} = useContext(AuthContext)
+    const {user,loading} = useAuth()
 
     const location=useLocation()
     console.log(location)

@@ -1,16 +1,23 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 const PendingAssignment = () => {
     const [allAssignments, setAllAssignments] = useState([])
     const [selectedAssignment, setSelectedAssignment] = useState([])
-
+    const axiosSecure = useAxiosSecure()
 
     useEffect(() => {
-        fetch('http://localhost:5000/allSubmittedAssignments')
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setAllAssignments(data)
+        // fetch('http://localhost:5000/allSubmittedAssignments')
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data)
+        //         setAllAssignments(data)
+        //     })
+        
+        axiosSecure.get('/allSubmittedAssignments', { withCredentials: true })
+            .then(res => {
+                setAllAssignments(res.data)
             })
     }, [])
 
@@ -42,16 +49,17 @@ const PendingAssignment = () => {
             headers: {
                 'content-type': 'application/json'
             },
+
             body: JSON.stringify(markingUpdated)
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-             toast.success('Feedback and marks submitted!')
+                toast.success('Feedback and marks submitted!')
             })
     }
 
-   
+
 
     return (
         <div className="mt-28 min-h-screen  bg-base-100 text-base-content">
@@ -120,10 +128,10 @@ const PendingAssignment = () => {
                                                         <label className="label block mb-2">
                                                             <span className="label-text text-gray-500 text-base font-semibold mb-2">Feedback</span>
                                                         </label>
-                                                        <textarea 
-                                                        name="Feedback"
-                                                        required
-                                                        placeholder="Give your feedback" className="focus:outline-none w-full rounded-lg border-2 border-[#e4e4e7]  focus:border-gray-400 pl-2 pt-2"></textarea>
+                                                        <textarea
+                                                            name="Feedback"
+                                                            required
+                                                            placeholder="Give your feedback" className="focus:outline-none w-full rounded-lg border-2 border-[#e4e4e7]  focus:border-gray-400 pl-2 pt-2"></textarea>
 
                                                     </div>
 

@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext()
 
@@ -33,17 +34,32 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleProvider)
     }
 
-    const githubLogin=()=>{
-        return signInWithPopup(auth,githubProvider)
+    const githubLogin = () => {
+        return signInWithPopup(auth, githubProvider)
     }
 
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             console.log("paisi", currentUser)
+            const userEmail = currentUser?.email || user?.email
+            const loggedUser = { email: userEmail }
             setUser(currentUser)
             setLoading(false)
-
+            if (currentUser) {
+                axios.post('http://localhost:5000/jwt', loggedUser, {
+                    withCredentials: true
+                })
+                    .then(res => {
+                        console.log(res.data)
+                    })
+            }
+            else {
+                axios.post('http://localhost:5000/logout', loggedUser, { withCredentials: true })
+                    .then(res => {
+                        console.log((res.data))
+                    })
+            }
         });
 
         return () => {
@@ -61,7 +77,7 @@ const AuthProvider = ({ children }) => {
         setLoading,
         googleLogin,
         githubLogin,
-        
+
     }
 
 

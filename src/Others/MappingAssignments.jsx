@@ -6,6 +6,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import { AuthContext } from "../Providers/AuthProvider";
+import useAuth from "../Hooks/useAuth";
 
 // or via CommonJS
 // const Swal = require('sweetalert2')
@@ -14,8 +15,10 @@ import { AuthContext } from "../Providers/AuthProvider";
 // import 'sweetalert2/src/sweetalert2.scss'
 
 const MappingAssignments = ({ aData }) => {
-  const { user } = useContext(AuthContext)
-  const navigate=useNavigate()
+  // const { user } = useContext(AuthContext)
+  const { user } = useAuth()
+  
+  const navigate = useNavigate()
   const { _id, email, Title, Marks, dueDate, photoURL, DifficultyLevel, description } = aData
 
   console.log(DifficultyLevel, _id)
@@ -48,14 +51,14 @@ const MappingAssignments = ({ aData }) => {
         })
 
     }
-    else if(!user){
+    else if (!user) {
       toast.error('At first you have to login')
       navigate('/login')
     }
-    else{
+    else {
       toast.error("Invalid User")
     }
-    
+
   }
 
   // const datas=useLoaderData()
@@ -93,7 +96,7 @@ const MappingAssignments = ({ aData }) => {
                   <GoPencil className="w-4 h-5" />
                   <p className="ml-2 text-sm font-semibold">Update</p>
                 </button>
-                </Link>
+              </Link>
 
             </div>
             <div>

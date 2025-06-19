@@ -7,10 +7,13 @@ import 'filepond/dist/filepond.min.css';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 import { AuthContext } from "../Providers/AuthProvider";
 import toast from "react-hot-toast";
+import useAuth from "../Hooks/useAuth";
 registerPlugin(FilePondPluginFileValidateType);
 
 const AssignmentDetails = () => {
-    const { user } = useContext(AuthContext)
+    // const { user } = useContext(AuthContext)
+    const { user } = useAuth()
+    
     console.log(user)
     const [files, setFiles] = useState([]);
 

@@ -6,10 +6,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
 import { AuthContext } from "../Providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
+import useAuth from "../Hooks/useAuth";
 
 const CreateAssignment = () => {
 
-    const {user}=useContext(AuthContext)
+    // const {user}=useContext(AuthContext)
+    const { user } = useAuth()
 
     const [startDate, setStartDate] = useState();
 
@@ -17,7 +19,7 @@ const CreateAssignment = () => {
         e.preventDefault()
 
         const form = e.target
-        const email=user.email
+        const email = user.email
         const Title = form.Title.value
         const Marks = form.Marks.value
         const dueDate = form.dueDate.value
@@ -25,9 +27,9 @@ const CreateAssignment = () => {
         const DifficultyLevel = form.DifficultyLevel.value
         const description = form.description.value
 
-        console.log(email,Title, Marks, dueDate, photoURL, DifficultyLevel, description)
+        console.log(email, Title, Marks, dueDate, photoURL, DifficultyLevel, description)
 
-        const newAss = {email, Title, Marks, dueDate, photoURL, DifficultyLevel, description }
+        const newAss = { email, Title, Marks, dueDate, photoURL, DifficultyLevel, description }
 
         fetch('http://localhost:5000/createAssignments',
             {
@@ -35,13 +37,16 @@ const CreateAssignment = () => {
                 headers: {
                     'content-type': 'application/json'
                 },
+                credentials:'include',
                 body: JSON.stringify(newAss)
             }
         )
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-               
+                if(data.message=== 'Unauthorized' || 'Forbidden access'){
+                    toast.error(data.message)
+                }
 
                 if (data.acknowledged) {
                     toast.success("Assignment created successfully!")

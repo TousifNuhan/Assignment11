@@ -6,13 +6,15 @@ import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
 import { AuthContext } from "../Providers/AuthProvider";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
 const UpdateAssignment = () => {
     const datas = useLoaderData()
     console.log(datas)
     const { _id, email, Title, Marks, dueDate, photoURL, DifficultyLevel, description } = datas
 
-    const { user } = useContext(AuthContext)
+    // const { user } = useContext(AuthContext)
+    const { user } = useAuth()
     const navigate = useNavigate()
 
     const [startDate, setStartDate] = useState();

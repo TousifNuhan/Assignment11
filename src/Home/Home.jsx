@@ -6,9 +6,11 @@ import Faqs from '../FAQS/Faqs';
 import Community from '../Community/Community';
 import BestService from '../BestService/BestService';
 import { AuthContext } from '../Providers/AuthProvider';
+import useAuth from '../Hooks/useAuth';
 
 const Home = () => {
-    const { loading } = useContext(AuthContext)
+    // const { loading } = useContext(AuthContext)
+    const { loading } = useAuth()
 
     // if (loading) {
     //     return <div className='h-screen mx-auto flex justify-center items-center'>

@@ -6,16 +6,18 @@ import toast from 'react-hot-toast';
 import { updateProfile } from 'firebase/auth';
 import { PiEyeSlash } from "react-icons/pi";
 import { PiEyeLight } from "react-icons/pi";
+import useAuth from '../Hooks/useAuth';
 
 const Register = () => {
 
-    const { user, loading, setLoading } = useContext(AuthContext)
+    const { user, loading, setLoading } = useAuth()
     const [showPassword, setShowPassword] = useState(false)
 
     const location = useLocation()
     const navigate = useNavigate()
 
-    const { createWithEmailAndPASS, googleLogin, githubLogin } = useContext(AuthContext)
+    // const { createWithEmailAndPASS, googleLogin, githubLogin } = useContext(AuthContext)
+    const { createWithEmailAndPASS, googleLogin, githubLogin } = useAuth()
 
     const handleGithubLogin = () => {
         githubLogin()

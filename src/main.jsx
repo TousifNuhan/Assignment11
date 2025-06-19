@@ -22,6 +22,12 @@ import MappingAssignments from './Others/MappingAssignments.jsx';
 
 import AssignmentDetails from './Others/AssignmentDetails.jsx';
 import UpdateAssignment from './Others/UpdateAssignment.jsx';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
+//tanstack
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient=new QueryClient()
 
 
 const router = createBrowserRouter([
@@ -36,7 +42,7 @@ const router = createBrowserRouter([
       {
         path: "/assignments",
         element: <Assignments></Assignments>,
-        loader:()=> fetch('http://localhost:5000/createAssignments')
+        loader: () => fetch('http://localhost:5000/createAssignments')
       },
       {
         path: '/createAssignment',
@@ -49,7 +55,7 @@ const router = createBrowserRouter([
       {
         path: '/mySubmittedAssignments',
         element: <PrivateRoute><MySubmittedAssignments></MySubmittedAssignments></PrivateRoute>
-        
+
       },
       {
         path: "/login",
@@ -60,18 +66,18 @@ const router = createBrowserRouter([
         element: <Register></Register>
       },
       {
-        path:'/mappingAssignments',
-        element:<MappingAssignments></MappingAssignments>
+        path: '/mappingAssignments',
+        element: <MappingAssignments></MappingAssignments>
       },
       {
-        path:'/updateAssignments/:id',
-        element:<PrivateRoute><UpdateAssignment></UpdateAssignment></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/createAssignments/${params.id}`)
+        path: '/updateAssignments/:id',
+        element: <PrivateRoute><UpdateAssignment></UpdateAssignment></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/createAssignments/${params.id}`)
       },
       {
-        path:'/assignments/:id',
-        element:<PrivateRoute><AssignmentDetails></AssignmentDetails></PrivateRoute>,
-       loader:({params})=>fetch(`http://localhost:5000/createAssignments/${params.id}`,{credentials:'include'})
+        path: '/assignments/:id',
+        element: <PrivateRoute><AssignmentDetails></AssignmentDetails></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/createAssignments/${params.id}`, { credentials: 'include' })
       },
       {
 
@@ -84,8 +90,11 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
-      <Toaster position='top-center'/>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <Toaster position='top-center' />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
     </AuthProvider>
   </StrictMode>,
 )

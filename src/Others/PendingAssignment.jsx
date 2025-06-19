@@ -2,30 +2,54 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { useMutation, useQuery } from "@tanstack/react-query";
 const PendingAssignment = () => {
-    const [allAssignments, setAllAssignments] = useState([])
+    // const [allAssignments, setAllAssignments] = useState([])
     const [selectedAssignment, setSelectedAssignment] = useState([])
     const axiosSecure = useAxiosSecure()
 
-    useEffect(() => {
-        // fetch('http://localhost:5000/allSubmittedAssignments')
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data)
-        //         setAllAssignments(data)
-        //     })
-        
-        axiosSecure.get('/allSubmittedAssignments', { withCredentials: true })
-            .then(res => {
-                setAllAssignments(res.data)
-            })
-    }, [])
+    const { data: allAssignments = [],
+        refetch }
+        = useQuery({
+            queryFn: async () => {
+                const { data } = await axiosSecure.get('/allSubmittedAssignments')
+                return data
+            },
+            queryKey: ['allPendingAssignments']
+        })
+
+    // useEffect(() => {
+    //     // fetch('http://localhost:5000/allSubmittedAssignments')
+    //     //     .then(res => res.json())
+    //     //     .then(data => {
+    //     //         console.log(data)
+    //     //         setAllAssignments(data)
+    //     //     })
+
+
+
+    //     axiosSecure.get('/allSubmittedAssignments')
+    //         .then(res => {
+    //             setAllAssignments(res.data)
+    //         })
+    // }, [])
 
     const openModal = (assignment) => {
 
         setSelectedAssignment(assignment)
         document.getElementById('modal2').showModal()
     }
+
+     const { mutateAsync } = useMutation({
+            mutationFn: async (markingUpdated) => {
+                const { data } = await axiosSecure.patch(`/submittedAssignments/${selectedAssignment._id}`, markingUpdated)
+                return data
+            },
+            onSuccess: () => {
+                toast.success('Feedback and marks submitted!')
+                refetch()
+            }
+        })
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -44,19 +68,21 @@ const PendingAssignment = () => {
         document.getElementById('modal2').close()
         form.reset()
 
-        fetch(`http://localhost:5000/submittedAssignments/${selectedAssignment._id}`, {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json'
-            },
+       mutateAsync(markingUpdated)
 
-            body: JSON.stringify(markingUpdated)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                toast.success('Feedback and marks submitted!')
-            })
+        // fetch(`http://localhost:5000/submittedAssignments/${selectedAssignment._id}`, {
+        //     method: 'PATCH',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+
+        //     body: JSON.stringify(markingUpdated)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data)
+        //         toast.success('Feedback and marks submitted!')
+        //     })
     }
 
 

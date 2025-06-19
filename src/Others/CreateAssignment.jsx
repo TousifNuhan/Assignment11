@@ -44,7 +44,7 @@ const CreateAssignment = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                if(data.message=== 'Unauthorized' || 'Forbidden access'){
+                if(data.message === 'Unauthorized' || data.message === 'Forbidden access'){
                     toast.error(data.message)
                 }
 

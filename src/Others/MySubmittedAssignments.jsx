@@ -3,6 +3,7 @@ import { AuthContext } from '../Providers/AuthProvider';
 import axios from 'axios';
 import useAuth from '../Hooks/useAuth';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
 
 const MySubmittedAssignments = () => {
     // const { user } = useContext(AuthContext)
@@ -10,31 +11,49 @@ const MySubmittedAssignments = () => {
     const axiosSecure = useAxiosSecure()
     // console.log(user?.email)
 
-    const [assignments, setAssignments] = useState([])
+    const { data: assignments = [],
+        refetch,
+        isError,
+        error,
+        isLoading } = useQuery({
+            // queryFn: () => getData(),
+            queryFn: async () => {
+                const { data } = await axiosSecure.get(`/mySubmittedAssignments?email=${user?.email}`)
+                return data
+            },
+            queryKey: ['submittedAssignments']   // better cache key
+        })
 
-    useEffect(() => {
+    // const getData = async () => {
+    //     const { data } = await axiosSecure.get(`/mySubmittedAssignments?email=${user?.email}`)
+    //     return data
+    // }
 
-        //eta first a krslm then axios dye update kore felsi 2 tai same
+    // const [assignments, setAssignments] = useState([])
 
-        // fetch(`http://localhost:5000/mySubmittedAssignments?email=${user?.email}`)
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data)
-        //         setAssignments(data)
-        //     })
+    // useEffect(() => {
 
-        // axios.get(`http://localhost:5000/mySubmittedAssignments?email=${user?.email}`, {withCredentials: true})
-        //     .then(res => {
-        //         setAssignments(res.data)
-        //     })
+    //     //eta first a krslm then axios dye update kore felsi 2 tai same
 
-        axiosSecure.get(`/mySubmittedAssignments?email=${user?.email}`)
-            .then(res => {
-                setAssignments(res.data)
-            })
+    //     // fetch(`http://localhost:5000/mySubmittedAssignments?email=${user?.email}`)
+    //     //     .then(res => res.json())
+    //     //     .then(data => {
+    //     //         console.log(data)
+    //     //         setAssignments(data)
+    //     //     })
+
+    //     // axios.get(`http://localhost:5000/mySubmittedAssignments?email=${user?.email}`, {withCredentials: true})
+    //     //     .then(res => {
+    //     //         setAssignments(res.data)
+    //     //     })
+
+    //     axiosSecure.get(`/mySubmittedAssignments?email=${user?.email}`)
+    //         .then(res => {
+    //             setAssignments(res.data)
+    //         })
 
 
-    }, [])
+    // }, [])
 
 
     return (

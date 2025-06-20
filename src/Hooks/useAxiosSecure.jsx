@@ -16,7 +16,7 @@ const useAxiosSecure = () => {
 
     useEffect(() => {
         axiosSecure.interceptors.response.use(res => {
-            console.log(res)
+            // console.log(res)
             return res
         }, err => {
             console.log('inter', err)

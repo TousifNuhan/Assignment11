@@ -2,11 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 const PendingAssignment = () => {
     // const [allAssignments, setAllAssignments] = useState([])
     const [selectedAssignment, setSelectedAssignment] = useState([])
     const axiosSecure = useAxiosSecure()
+    const queryClient=useQueryClient()
 
     const { data: allAssignments = [],
         refetch }
@@ -47,7 +48,10 @@ const PendingAssignment = () => {
             },
             onSuccess: () => {
                 toast.success('Feedback and marks submitted!')
-                refetch()
+                // refetch()
+
+                // refetch er borobhai
+                queryClient.invalidateQueries({queryKey:['allPendingAssignments']})
             }
         })
 

@@ -81,7 +81,7 @@ const Navbar = () => {
 
 
   const navAfterLogin2Parts = <>
-    <NavLink to="/mySubmittedAssignments"><a className={`${location.pathname === "/mySubmittedAssignments" ? 'text-yellow-500' : ' text-black'} hover:text-yellow-500 font-semibold text-base text-center `}>Submitted Assignments</a></NavLink>
+    <NavLink to="/mySubmittedAssignments"><a className={`${location.pathname === "/mySubmittedAssignments" ? 'text-yellow-500' : ' text-base-content'} hover:text-yellow-500 font-semibold text-base text-center `}>Submitted Assignments</a></NavLink>
     <hr className='text-[#D2B48C] mt-1' />
     <NavLink to="/login" onClick={handleLogout}
       className=" text-center text-base font-semibold text-base-content cursor-pointer  hover:text-yellow-500 rounded-4xl mr-2">Logout</NavLink>

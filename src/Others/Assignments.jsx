@@ -3,15 +3,27 @@ import { AuthContext } from '../Providers/AuthProvider';
 import { useLoaderData } from 'react-router-dom';
 import MappingAssignments from './MappingAssignments';
 import useAuth from '../Hooks/useAuth';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import useAxiosCommon from '../Hooks/useAxiosCommon';
 
 const Assignments = () => {
 
     // const { loading, setLoading } = useContext(AuthContext)
     const { loading, setLoading } = useAuth()
+    const axiosCommon = useAxiosCommon()
 
-    const datas = useLoaderData()
+    // const datas = useLoaderData()
 
-    console.log(datas)
+    // console.log(datas)
+    const { data: datas = [], refetch }
+        = useQuery({
+            queryFn: async() => {
+                const { data } =await axiosCommon.get('/createAssignments')
+                return data
+            },
+            queryKey: ['allAssignments']
+        })
 
     const [filter, setFilter] = useState('')
 
@@ -51,6 +63,7 @@ const Assignments = () => {
                     filterDatas.map(aData => <MappingAssignments
                         key={aData._id}
                         aData={aData}
+                        refetch={refetch}
                     ></MappingAssignments>)
                 }
             </div>

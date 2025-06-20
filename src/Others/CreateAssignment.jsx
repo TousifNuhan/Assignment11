@@ -81,6 +81,7 @@ const CreateAssignment = () => {
                                 type="text"
                                 placeholder="Enter Title"
                                 name="Title"
+                                required
                                 className="border-2 py-3 px-3 rounded-lg
                                 border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-full max-w-xl"/>
                         </div>
@@ -93,6 +94,7 @@ const CreateAssignment = () => {
                                 placeholder="Enter Marks"
                                 name="Marks"
                                 min={1}
+                                required
                                 className="border-2 py-3 px-3 rounded-lg
                                 border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-full max-w-xl" />
                         </div>
@@ -103,13 +105,15 @@ const CreateAssignment = () => {
                             <DatePicker
                                 placeholderText="Select due date"
                                 name="dueDate"
-                                className="border-2 py-3 px-3 rounded-lg
+                                required
+                                className="border-2 py-3 px-3 rounded-lg 
                                 border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-2/3 " selected={startDate}
                                 onChange={(date) => setStartDate(date)} />
                             {/* <input
                                 type="number"
                                 placeholder="Enter Marks"
                                 name="Marks"
+                                required
                                 className="border-2 py-3 px-3 rounded-lg
                                 border-[#e4e4e7] focus:outline-none focus:border-gray-400 min-w-1/3 " /> */}
                         </div>
@@ -125,6 +129,7 @@ const CreateAssignment = () => {
                             type="url"
                             placeholder="Enter the PhotoUrl"
                             name="photoURL"
+                            required
                             className="border-2 py-3 px-3 rounded-lg
                                 border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-full " />
                     </div>
@@ -141,9 +146,9 @@ const CreateAssignment = () => {
                                     name="DifficultyLevel"
                                 >
                                     <option value="" disabled>Select difficulty level</option>
-                                    <option value="easy">Easy</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="hard">Hard</option>
+                                    <option className="text-base-content" value="easy">Easy</option>
+                                    <option className="text-base-content" value="medium">Medium</option>
+                                    <option className="text-base-content" value="hard">Hard</option>
                                 </select>
                                 <IoIosArrowDown className="absolute right-3 top-2/5 mt-1" />
                             </div>
@@ -161,6 +166,7 @@ const CreateAssignment = () => {
                                 type="text"
                                 placeholder="Write a short description..."
                                 name="description"
+                                required
                                 className="border-2 py-3 px-3 pl-3 appearance-none rounded-lg mt-2 
                                 border-[#e4e4e7] focus:outline-none focus:border-gray-400 w-full max-w-xl" />
                         </div>

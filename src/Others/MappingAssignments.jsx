@@ -7,6 +7,8 @@ import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import { AuthContext } from "../Providers/AuthProvider";
 import useAuth from "../Hooks/useAuth";
+import { useMutation } from "@tanstack/react-query";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 // or via CommonJS
 // const Swal = require('sweetalert2')
@@ -14,14 +16,26 @@ import useAuth from "../Hooks/useAuth";
 // import Swal from 'sweetalert2/dist/sweetalert2.js'
 // import 'sweetalert2/src/sweetalert2.scss'
 
-const MappingAssignments = ({ aData }) => {
+const MappingAssignments = ({ aData, refetch }) => {
   // const { user } = useContext(AuthContext)
   const { user } = useAuth()
-  
+  const axiosSecure = useAxiosSecure()
+
   const navigate = useNavigate()
   const { _id, email, Title, Marks, dueDate, photoURL, DifficultyLevel, description } = aData
 
   console.log(DifficultyLevel, _id)
+
+  const { mutateAsync } = useMutation({
+    mutationFn: async(id) => {
+      const { data } =await axiosSecure.delete(`http://localhost:5000/createAssignments/${id}`)
+      return data
+    },
+    onSuccess: () => {
+      toast.success('Assignment Deleted Successfully')
+      refetch()
+    }
+  })
 
   const handleDelete = (id, email) => {
     console.log(email)
@@ -38,15 +52,16 @@ const MappingAssignments = ({ aData }) => {
       })
         .then((result) => {
           if (result.isConfirmed) {
-            fetch(`http://localhost:5000/createAssignments/${id}`, {
-              method: 'DELETE',
-            })
-              .then(res => res.json())
-              .then(data => {
-                if (data.deletedCount > 0) {
-                  toast.success('Assignment Deleted Successfully')
-                }
-              })
+            // fetch(`http://localhost:5000/createAssignments/${id}`, {
+            //   method: 'DELETE',
+            // })
+            //   .then(res => res.json())
+            //   .then(data => {
+            //     if (data.deletedCount > 0) {
+            //       toast.success('Assignment Deleted Successfully')
+            //     }
+            //   })
+            mutateAsync(id)
           }
         })
 

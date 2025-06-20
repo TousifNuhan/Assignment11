@@ -5,19 +5,50 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
 import { AuthContext } from "../Providers/AuthProvider";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import { useMutation, useQueries, useQuery, useQueryClient } from "@tanstack/react-query";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const UpdateAssignment = () => {
-    const datas = useLoaderData()
-    console.log(datas)
+    // const datas = useLoaderData()
+    // console.log(datas)
+    const { id } = useParams()
+    const axiosSecure = useAxiosSecure()
+
+    const queryClient=useQueryClient()
+
+    const { data: datas = [] } = useQuery({
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/createAssignments/${id}`)
+            return data
+        },
+        queryKey: ['updateAssignments']
+    })
+
     const { _id, email, Title, Marks, dueDate, photoURL, DifficultyLevel, description } = datas
+    console.log(_id)
 
     // const { user } = useContext(AuthContext)
     const { user } = useAuth()
     const navigate = useNavigate()
 
     const [startDate, setStartDate] = useState();
+
+    const {mutateAsync}=useMutation({
+        mutationFn: async (UpdatedDatas) => {
+            const { data } = await axiosSecure.put(`/createAssignments/${_id}`,UpdatedDatas)
+            return data
+        },
+        onSuccess: () => {
+            toast.success('Updated Successfully!')
+            navigate('/assignments')
+
+            // refresh er borobhai re use kortesi
+
+            queryClient.invalidateQueries({queryKey:['updateAssignments']})
+        }
+    })
 
     const handleUpdateAssignmentForm = (e) => {
         e.preventDefault()
@@ -32,21 +63,23 @@ const UpdateAssignment = () => {
 
         const UpdatedDatas = { Title, Marks, dueDate, photoURL, DifficultyLevel, description }
 
-        fetch(`http://localhost:5000/createAssignments/${_id}`, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(UpdatedDatas)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                if (data.modifiedCount > 0) {
-                    toast.success('Updated Successfully!')
-                    navigate('/assignments')
-                }
-            })
+        mutateAsync(UpdatedDatas)
+
+        // fetch(`http://localhost:5000/createAssignments/${_id}`, {
+        //     method: 'PUT',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(UpdatedDatas)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data)
+        //         if (data.modifiedCount > 0) {
+        //             toast.success('Updated Successfully!')
+        //             navigate('/assignments')
+        //         }
+        //     })
 
     }
     return (

@@ -27,8 +27,8 @@ const MappingAssignments = ({ aData, refetch }) => {
   console.log(DifficultyLevel, _id)
 
   const { mutateAsync } = useMutation({
-    mutationFn: async(id) => {
-      const { data } =await axiosSecure.delete(`http://localhost:5000/createAssignments/${id}`)
+    mutationFn: async (id) => {
+      const { data } = await axiosSecure.delete(`http://localhost:5000/createAssignments/${id}`)
       return data
     },
     onSuccess: () => {
@@ -89,8 +89,8 @@ const MappingAssignments = ({ aData, refetch }) => {
         </div>
         <div className="w-11/12 mx-auto">
           <div className="flex justify-between items-center mt-6">
-            <h3 className="text-xl font-semibold">{Title}</h3>
-            <p className="text-xs font-semibold border rounded-2xl px-2 py-1 border-[#e4e4e7] bg-white text-black">{Marks} marks</p>
+            <h3 className="md:text-lg lg:text-xl font-semibold">{Title}</h3>
+            <p className="text-xs font-semibold border rounded-2xl px-1 lg:px-2 py-1 border-[#e4e4e7] bg-white text-black">{Marks} marks</p>
           </div>
           <div className=" mt-3 mb-5">
             <p className="text-[#71717a] text-sm font-semibold">Due: {dueDate}</p>
@@ -98,16 +98,16 @@ const MappingAssignments = ({ aData, refetch }) => {
           <div className=" flex justify-center gap-2 pb-12">
             <Link to={`/assignments/${_id}`}>
               <div>
-                <button className='flex justify-between items-center py-2 px-6 cursor-pointer rounded-sm border border-[#00bafe] text-[#00bafe] hover:text-[hsl(196,100%,46%)] min-w-28'>
+                <button className='flex justify-between items-center py-2 md:px-4 lg:px-6 cursor-pointer rounded-sm border border-[#00bafe] text-[#00bafe] hover:text-[hsl(196,100%,46%)]  lg:min-w-28 md:min-w-20'>
                   <AiOutlineEye className="w-5 h-5" />
-                  <p className=" text-sm font-semibold ">View</p>
+                  <p className="ml-1 mr-1 text-sm font-semibold ">View</p>
                 </button>
               </div>
             </Link>
-            <div>
 
+            <div>
               <Link to={`/updateAssignments/${_id}`}>
-                <button className='flex justify-between items-center py-2 px-6 cursor-pointer rounded-sm border border-[#fcb700] text-[#fcb700] hover:text-[hsl(44,99%,46%)] min-w-28'>
+                <button className='flex justify-between items-center py-2 md:px-4 lg:px-6  cursor-pointer rounded-sm border border-[#fcb700] text-[#fcb700] hover:text-[hsl(44,99%,46%)] lg:min-w-28 md:min-w-20'>
                   <GoPencil className="w-4 h-5" />
                   <p className="ml-2 text-sm font-semibold">Update</p>
                 </button>
@@ -115,7 +115,7 @@ const MappingAssignments = ({ aData, refetch }) => {
 
             </div>
             <div>
-              <button onClick={() => handleDelete(_id, email)} className='flex justify-between items-center py-2 px-6 cursor-pointer rounded-sm border border-[#ef4444] text-[#ef4444] hover:text-[rgb(248,40,40)] min-w-28'>
+              <button onClick={() => handleDelete(_id, email)} className='flex justify-between items-center py-2 md:px-4 lg:px-6 cursor-pointer rounded-sm border border-[#ef4444] text-[#ef4444] hover:text-[rgb(248,40,40)] lg:min-w-28 md:min-w-20'>
                 <RiDeleteBinLine className="w-4 h-5" />
                 <p className="ml-2 text-sm font-semibold ">Delete</p>
               </button>

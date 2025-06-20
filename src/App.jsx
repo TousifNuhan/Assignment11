@@ -63,14 +63,13 @@ function App() {
             <div className="hero-overlay bg-opacity-60"></div>
             <div className='my-10'>
               <Fade direction='left' delay={1000}>
-                <h2 className='text-6xl font-semibold text-white'>Collaborative Learning</h2>
+                <h2 className='md:text-5xl lg:text-6xl font-semibold text-white'>Collaborative Learning</h2>
               </Fade>
               <Fade delay={2000}>
-                <p className='text-white font-semibold text-xl mt-1 mb-9'>Unlock the power of teamwork</p>
+                <p className='text-white font-semibold text-xl mt-1 md:mb-5 lg:mb-9'>Unlock the power of teamwork</p>
               </Fade>
               <Fade direction='up' delay={3000}>
-               <a className='cursor-pointer  bg-[#fff568] 
-                text-lg font-medium px-8 py-3 rounded-4xl'>Start Studying</a>
+               <a className='cursor-pointer bg-[#fff568] md:text-base lg:text-lg font-medium lg:px-8 md:px-7 md:py-2 lg:py-3 rounded-4xl'>Start Studying</a>
               </Fade>
 
             </div>
@@ -90,13 +89,13 @@ function App() {
             <div className="hero-overlay bg-opacity-60"></div>
             <div className='my-10 '>
               <Fade direction='left' delay={1000}>
-                <h2 className='text-6xl font-semibold text-white'>Study Smarter, Together</h2>
+                <h2 className='md:text-5xl lg:text-6xl font-semibold text-white'>Study Smarter, Together</h2>
               </Fade>
               <Fade delay={2000}>
-                <p className='text-white font-semibold text-xl mt-1 mb-9'>Join a community of learners</p>
+                <p className='text-white font-semibold text-xl mt-1 md:mb-5 lg:mb-9'>Join a community of learners</p>
               </Fade>
               <Fade direction='up' delay={3000}>
-               <a className='cursor-pointer  bg-[#fff568] text-lg font-medium px-8 py-3 rounded-4xl'>Join Now</a>
+               <a className='cursor-pointer bg-[#fff568] md:text-base lg:text-lg font-medium lg:px-8 md:px-7 md:py-2 lg:py-3 rounded-4xl'>Join Now</a>
               </Fade>
 
             </div>
@@ -116,13 +115,13 @@ function App() {
             <div className="hero-overlay bg-opacity-60"></div>
             <div className='my-10'>
               <Fade direction='left' delay={1000}>
-                <h2 className='text-6xl font-semibold text-white'>Your Virtual Study Hub</h2>
+                <h2 className='md:text-5xl lg:text-6xl font-semibold text-white'>Your Virtual Study Hub</h2>
               </Fade>
               <Fade delay={2500}>
-                <p className='text-white font-semibold text-xl mt-1 mb-9'>Learn, Share, and Grow</p>
+                <p className='text-white font-semibold text-xl mt-1 md:mb-7 lg:mb-9'>Learn, Share, and Grow</p>
               </Fade>
               <Fade direction='up' delay={3000}>
-               <a className='cursor-pointer  bg-[#fff568] text-lg font-medium px-8 py-3 rounded-4xl'>Get Started</a>
+               <a className='cursor-pointer bg-[#fff568] md:text-base lg:text-lg font-medium lg:px-8 md:px-7 md:py-2 lg:py-3 rounded-4xl'>Get Started</a>
               </Fade>
 
             </div>

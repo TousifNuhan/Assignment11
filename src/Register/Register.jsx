@@ -100,17 +100,17 @@ const Register = () => {
 
     return (
         <div className='bg-black'>
-            <div className='w-11/12 mx-auto flex justify-center items-center min-h-screen pt-28 pb-14'>
-                <div className='flex-1 '>
+            <div className='w-11/12 mx-auto flex justify-center items-center lg:min-h-screen pt-28 pb-14'>
+                <div className='flex-1'>
                     <img className='rounded-3xl' src="https://media.istockphoto.com/id/1411110345/photo/side-view-of-a-successful-smart-guy-listening-to-an-online-lecture-taking-notes-in-a-notebook.webp?a=1&b=1&s=612x612&w=0&k=20&c=gRtVi4qmR2GqZIteRUKQUebQlfSNQ2OfO-u4XtVRSpI=" alt="" />
                 </div>
                 <div className='flex-1'>
                     <div className='text-white text-center'>
-                        <h1 className='text-2xl font-bold '>Sign Up & Start Learning <br />
+                        <h1 className='md:text-xl lg:text-2xl font-bold '>Sign Up & Start Learning <br />
                             on PeerLearn!</h1>
-                        <p className='text-lg w-11/12 font-light mt-2 mb-7'>Create your account and join a vibrant community of learners. Collaborate,  share knowledge and achieve <br /> your academic goals.</p>
+                        <p className='md:text-sm lg:text-lg w-11/12 font-light mt-2 mb-7 text-center  mx-auto'>Create your account and join a vibrant community of learners. Collaborate,  share knowledge and achieve <br /> your academic goals.</p>
                     </div>
-                    <div className='w-4/5 mx-auto'>
+                    <div className='md:w-11/12 lg:w-4/5 mx-auto'>
                         <form onSubmit={handleRegister} className='text-center'>
                             <label className="block">
                                 <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5' type="text" name='name' placeholder='Full Name' required />
@@ -124,24 +124,24 @@ const Register = () => {
                                 <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5 ' type="url" name='PhotoURL' placeholder='PhotoURL' required />
                             </label>
 
-                            <label className="mt-3 block relative w-4/5 mx-auto">
+                            <label className="mt-3 block relative md:w-fit lg:w-4/5 lg:mx-auto ">
                                 <input className='focus:outline-none bg-[#ffffff1a] text-[#bababa] border border-[#8E8E8E] placeholder:text-[#bababa] active::transition active::delay-150 active::bg-[#ffffff33] active::duration-200 w-sm py-2 rounded-md active::border-[#bababa] pl-5 '
                                     type={showPassword ? "text" : "password"}
                                     name='password'
                                     placeholder='Password'
                                     required />
-                                <span onClick={() => setShowPassword(!showPassword)}>
+                                <span className='' onClick={() => setShowPassword(!showPassword)}>
                                     {
                                         showPassword ?
-                                            <PiEyeLight className='h-5 w-5 absolute top-2.5 right-5 text-white' /> :
-                                            <PiEyeSlash className='h-5 w-5 absolute top-2.5 right-5 text-white' />
+                                            <PiEyeLight className='h-5 w-5 absolute top-2.5 md:right-4 lg:right-5 text-white' /> :
+                                            <PiEyeSlash className='h-5 w-5 absolute top-2.5 md:right-4 lg:right-5 text-white' />
                                     }
                                 </span>
                             </label>
 
 
-                            <div className='w-4/5 mx-auto my-3 gap-1'>
-                                <button className='bg-white text-black rounded-md w-1/2 py-2 border border-white  font-semibold cursor-pointer ml-1'>Create Account</button>
+                            <div className='md:w-auto lg:w-4/5 mx-auto my-3 gap-1 '>
+                                <button className='bg-white text-black rounded-md w-1/2 py-2 border border-white  font-semibold cursor-pointer md:ml-5 lg:ml-1'>Create Account</button>
                                 <Link to="/login"><button className='hover:bg-white text-white hover:transition-all hover:delay-100 hover:text-black rounded-md w-2/5 py-2 px-3 border border-white font-semibold cursor-pointer ml-2'>Login</button></Link>
                             </div>
 
@@ -150,15 +150,15 @@ const Register = () => {
                             </div>
 
                         </form>
-                        <div className='flex justify-center items-center gap-2'>
+                        <div className='flex justify-center items-center gap-2 '>
 
-                            <button onClick={handleGoogleLogin} className="hover:bg-white text-white hover:transition-all hover:delay-100 hover:text-black rounded-md py-2 border border-white font-semibold cursor-pointer flex justify-center items-center w-2/5">
+                            <button onClick={handleGoogleLogin} className="hover:bg-white text-white hover:transition-all hover:delay-100 hover:text-black rounded-md py-2 border border-white font-semibold cursor-pointer flex justify-center items-center md:w-1/2 lg:w-2/5 md:ml-4 lg:ml-0">
                                 <FaGoogle />
 
                                 <h5 className='ml-2 text-sm'>Google</h5>
                             </button>
 
-                            <button onClick={handleGithubLogin} className="hover:bg-white text-white hover:transition-all hover:delay-100 hover:text-black rounded-md py-2 border border-white font-semibold cursor-pointer flex justify-center items-center w-2/5">
+                            <button onClick={handleGithubLogin} className="hover:bg-white text-white hover:transition-all hover:delay-100 hover:text-black rounded-md py-2 border border-white font-semibold cursor-pointer flex justify-center items-center md:w-1/2 lg:w-2/5">
                                 <FaGithub />
 
 

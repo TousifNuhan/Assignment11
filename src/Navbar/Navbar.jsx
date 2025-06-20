@@ -64,27 +64,27 @@ const Navbar = () => {
   const navBeforeLogin = <>
     {
       user ? <>
-        <NavLink to="/"><li><a className={`${location.pathname === "/" ? 'text-yellow-500' : 'lg:text-white text-black'} hover:text-yellow-500 font-semibold text-base border-none text-start`}>Home</a></li></NavLink>
+        <NavLink to="/"><li><a className={`${location.pathname === "/" ? 'text-yellow-500' : 'lg:text-white '} hover:text-yellow-500 font-semibold md:text-sm lg:text-base border-none text-start`}>Home</a></li></NavLink>
         <hr className='text-[#D2B48C]' />
-        <NavLink to="/assignments"><li><a className={`${location.pathname === "/assignments" ? 'text-yellow-500' : 'lg:text-white text-black'} hover:text-yellow-500 font-semibold text-base text-start`}>Assignments</a></li></NavLink>
+        <NavLink to="/assignments"><li><a className={`${location.pathname === "/assignments" ? 'text-yellow-500' : 'lg:text-white '} hover:text-yellow-500  font-semibold md:text-sm lg:text-base text-start`}>Assignments</a></li></NavLink>
         <hr className='text-[#D2B48C]' />
-        <NavLink to="/createAssignment"><li><a className={`${location.pathname === "/createAssignment" ? 'text-yellow-500' : 'lg:text-white text-black'} hover:text-yellow-500 font-semibold text-base text-start`}>Create Assignment</a></li></NavLink>
+        <NavLink to="/createAssignment"><li><a className={`${location.pathname === "/createAssignment" ? 'text-yellow-500' : 'lg:text-white '} hover:text-yellow-500 font-semibold md:text-sm lg:text-base text-start`}>Create Assignment</a></li></NavLink>
         <hr className='text-[#D2B48C]' />
-        <NavLink to="/pendingAssignment"><li><a className={`${location.pathname === "/pendingAssignment" ? 'text-yellow-500' : 'lg:text-white text-black'} hover:text-yellow-500 font-semibold text-base text-start`}>Pending Assignment</a></li></NavLink>
+        <NavLink to="/pendingAssignment"><li><a className={`${location.pathname === "/pendingAssignment" ? 'text-yellow-500' : 'lg:text-white '} hover:text-yellow-500 font-semibold md:text-sm lg:text-base text-start`}>Pending Assignment</a></li></NavLink>
       </>
         : <>
-          <NavLink to="/"><li><a className={`${location.pathname === "/" ? 'text-yellow-500' : 'lg:text-white text-black'} hover:text-yellow-500 font-semibold text-base border-none`}>Home</a></li></NavLink>
-          <NavLink to="/assignments"><li><a className={`${location.pathname === "/assignments" ? 'text-yellow-500' : 'lg:text-white text-black'} hover:text-yellow-500 font-semibold text-base`}>Assignments</a></li></NavLink>
+          <NavLink to="/"><li><a className={`${location.pathname === "/" ? 'text-yellow-500' : 'lg:text-white '} hover:text-yellow-500 font-semibold md:text-sm lg:text-base border-none`}>Home</a></li></NavLink>
+          <NavLink to="/assignments"><li><a className={`${location.pathname === "/assignments" ? 'text-yellow-500' : 'lg:text-white '} hover:text-yellow-500 font-semibold md:text-sm lg:text-base`}>Assignments</a></li></NavLink>
         </>
     }
   </>
 
 
   const navAfterLogin2Parts = <>
-    <NavLink to="/mySubmittedAssignments"><a className={`${location.pathname === "/mySubmittedAssignments" ? 'text-yellow-500' : ' text-base-content'} hover:text-yellow-500 font-semibold text-base text-center `}>Submitted Assignments</a></NavLink>
+    <NavLink to="/mySubmittedAssignments"><a className={`${location.pathname === "/mySubmittedAssignments" ? 'text-yellow-500' : ' text-base-content'} hover:text-yellow-500 font-semibold md:text-sm lg:text-base text-center `}>Submitted Assignments</a></NavLink>
     <hr className='text-[#D2B48C] mt-1' />
     <NavLink to="/login" onClick={handleLogout}
-      className=" text-center text-base font-semibold text-base-content cursor-pointer  hover:text-yellow-500 rounded-4xl mr-2">Logout</NavLink>
+      className=" text-center md:text-sm lg:text-base font-semibold text-base-content cursor-pointer  hover:text-yellow-500 rounded-4xl mr-2">Logout</NavLink>
   </>
 
   const lightToDark = (

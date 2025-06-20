@@ -58,18 +58,18 @@ const CreateAssignment = () => {
     }
 
     return (
-        <div className='pt-[8%] min-h-screen bg-base-100 text-base-content'>
+        <div className='md:pt-[13%] lg:pt-[8%] min-h-screen bg-base-100 text-base-content'>
             <div className="w-11/12 flex flex-col items-center mx-auto my-3">
                 <h1 className="text-base-content font-bold text-xl md:text-3xl">Create a New Assignment</h1>
                 {/* <h1 className="text-base-content text-3xl font-bold ">Create a New Assignment</h1> */}
-                <p className="text-center text-gray-500 font-semibold text-sm w-4/5 md:w-3/5 pt-1 md:mt-1 mb-7">Get started by setting up an assignment for your study group! Fill out the details below to help your peers stay on track and collaborate effectively.</p>
+                <p className="text-center text-gray-500 font-semibold text-sm w-4/5  pt-1 md:mt-1 mb-7">Get started by setting up an assignment for your study group! Fill out the details below to help your peers stay on track and collaborate effectively.</p>
                 {/* <p className="text-base-content"> aaas</p> */}
             </div>
             <form onSubmit={handleCreateAssignmentForm} className='md:mt-0 mt-6 mb-10'>
-                <div className=" border-2 border-[#e4e4e7] hover:border-gray-400 hover:delay-150 hover:duration-200 rounded-2xl w-3/5 mx-auto p-6 md:p-10">
+                <div className=" border-2 border-[#e4e4e7] hover:border-gray-400 hover:delay-150 hover:duration-200 rounded-2xl md:w-4/5 lg:w-3/5 mx-auto p-6 md:p-10">
 
                     <div >
-                        <h1 className="text-base-content font-bold text-2xl mb-4 pb-3">Create New Assignment</h1>
+                        <h1 className="text-base-content font-bold md:text-xl lg:text-2xl mb-4 pb-3">Create New Assignment</h1>
                     </div>
 
                     <div className="md:grid grid-cols-2 items-center ">

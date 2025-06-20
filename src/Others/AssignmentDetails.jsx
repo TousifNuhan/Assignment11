@@ -69,7 +69,7 @@ const AssignmentDetails = () => {
     }
 
     return (
-        <div className="mt-32 mb-10   min-h-screen bg-base-100 text-base-content">
+        <div className="pt-32 lg:min-h-screen bg-base-100 text-base-content border-2 border-red-600">
             <div className="w-4/5 mx-auto">
                 <h3 className="text-2xl font-semibold">{Title}</h3>
                 <div className="flex  justify-between mt-5">

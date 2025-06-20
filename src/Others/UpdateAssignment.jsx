@@ -84,16 +84,16 @@ const UpdateAssignment = () => {
     }
     return (
         <div>
-            <div className='pt-[8%] min-h-screen bg-base-100 '>
+            <div className='lg:pt-[8%] md:pt-[13%] min-h-screen bg-base-100 '>
                 <div className="w-11/12 flex flex-col items-center mx-auto my-3">
                     <h1 className="text-base-content font-bold text-xl md:text-3xl">Update an Assignment</h1>
-                    <p className="text-center text-gray-500 font-semibold text-sm w-4/5 md:w-3/5 pt-1 md:mt-1 mb-7">Keep your study group organized and informed by updating the details of this assignment. Use the form below to make any necessary changes—whether it's adjusting the due date, modifying the title, updating the marks, or revising the description. Keeping assignments up-to-date ensures everyone stays aligned and can collaborate effectively.</p>
+                    <p className="text-center text-gray-500 font-semibold text-sm w-4/5  pt-1 md:mt-1 mb-7">Keep your study group organized and informed by updating the details of this assignment. Use the form below to make any necessary changes—whether it's adjusting the due date, modifying the title, updating the marks, or revising the description. Keeping assignments up-to-date ensures everyone stays aligned and can collaborate effectively.</p>
                 </div>
                 <form onSubmit={handleUpdateAssignmentForm} className='md:mt-0 mt-6 mb-10'>
-                    <div className=" border-2 border-[#e4e4e7] hover:border-gray-400 hover:delay-150 hover:duration-200 rounded-2xl w-3/5 mx-auto p-6 md:p-10">
+                    <div className=" border-2 border-[#e4e4e7] hover:border-gray-400 hover:delay-150 hover:duration-200 rounded-2xl md:w-4/5 lg:w-3/5 mx-auto p-6 md:p-10">
 
                         <div >
-                            <h1 className="text-base-content font-bold text-2xl mb-4 pb-3">Update Assignment</h1>
+                            <h1 className="text-base-content font-bold text-xl lg:text-2xl mb-4 pb-3">Update Assignment</h1>
                         </div>
 
                         <div className="md:grid grid-cols-2 items-center ">

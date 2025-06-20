@@ -39,10 +39,10 @@ const Assignments = () => {
     //     </div>;
     // }
     return (
-        <div className='min-h-screen bg-base-100 text-base-content mt-[8%]'>
+        <div className='min-h-screen bg-base-100 text-base-content md:mt-[13%] lg:mt-[8%]'>
             <div className="w-11/12 flex flex-col items-center mx-auto my-3 ">
                 <h1 className="text-base-content font-bold text-xl md:text-3xl">Explore Assignments</h1>
-                <p className="text-center text-gray-500 font-semibold text-sm w-4/5 md:w-3/5 pt-2 md:mt-1 ">Browse through all peer-created assignments. You can filter by difficulty level and easily view, update, or delete assignments. Find tasks that challenge your skills and help you grow!</p>
+                <p className="text-center text-gray-500 font-semibold text-sm w-4/5  pt-2 md:mt-1 ">Browse through all peer-created assignments. You can filter by difficulty level and easily view, update, or delete assignments. Find tasks that challenge your skills and help you grow!</p>
             </div>
             <div className='w-11/12 mx-auto text-center mt-5'>
 
@@ -58,7 +58,7 @@ const Assignments = () => {
                     <li onClick={() => handleFilter('hard')} className='text-sm font-semibold'><a>Hard</a></li>
                 </ul>
             </div>
-            <div className='grid grid-cols-3 gap-5 w-11/12 mx-auto mt-14'>
+            <div className='grid md:grid-cols-2 lg:grid-cols-3 md:gap-4 lg:gap-5 w-11/12 mx-auto mt-14'>
                 {
                     filterDatas.map(aData => <MappingAssignments
                         key={aData._id}

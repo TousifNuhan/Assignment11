@@ -17,10 +17,10 @@ const Community = () => {
                 <h1 className='text-5xl font-bold leading-16 text-base-content'>Join our 250+ Community <br />
                     Let’s started</h1>
 
-                <form action="" className='flex justify-center items-center mt-16 max-w-[35%] mx-auto '>
+                <form action="" className='flex justify-center items-center md:mt-24 lg:mt-16 max-w-[35%] mx-auto '>
                     <div className='w-full relative '>
                         <input className='shadow-[0_15px_20px_rgba(0,0,0,0.2)] outline-none rounded-4xl w-full pl-5 py-5 bg-white placeholder-black border placeholder:text-base placeholder:font-medium border-[#00000026]' type="email" name='email' placeholder='Email Address' />
-                        <button className='bg-[#0555ff] right-2 top-1/2 -translate-y-1/2 absolute text-center h-12 rounded-4xl px-12 cursor-pointer text-white font-semibold text-sm'>Submit</button>
+                        <button className='bg-[#0555ff] right-2 top-1/2 -translate-y-1/2 absolute text-center md:h-8 lg:h-12 rounded-4xl md:px-4 lg:px-12 cursor-pointer text-white font-semibold text-sm'>Submit</button>
                     </div>
                 </form>
 

@@ -41,23 +41,23 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
-            console.log("paisi", currentUser)
+            // console.log("paisi", currentUser)
             const userEmail = currentUser?.email || user?.email
             const loggedUser = { email: userEmail }
             setUser(currentUser)
             setLoading(false)
             if (currentUser) {
-                axios.post('http://localhost:5000/jwt', loggedUser, {
+                axios.post('https://assignment11-server-cyan.vercel.app/jwt', loggedUser, {
                     withCredentials: true
                 })
                     .then(res => {
-                        console.log(res.data)
+                        // console.log(res.data)
                     })
             }
             else {
-                axios.post('http://localhost:5000/logout', loggedUser, { withCredentials: true })
+                axios.post('https://assignment11-server-cyan.vercel.app/logout', loggedUser, { withCredentials: true })
                     .then(res => {
-                        console.log((res.data))
+                        // console.log((res.data))
                     })
             }
         });

@@ -18,19 +18,25 @@ function App() {
     typeSpeed: 50,
     words: ['Customized', 'Travel', 'Plans'],
     loop: 8,
-    onLoopDone: () => console.log(`loop completed after 3 runs.`)
+    onLoopDone: () => {
+      // console.log(``)
+    }
   })
   const [banners2] = useTypewriter({
     typeSpeed: 50,
     words: ['Explore', 'the', 'World', 'With', 'Us'],
     loop: 8,
-    onLoopDone: () => console.log(`loop completed after 3 runs.`)
+    onLoopDone: () => {
+      // console.log(``)
+    }
   })
   const [banners3] = useTypewriter({
     typeSpeed: 50,
     words: ['Top-notch', 'Accommodations'],
     loop: 8,
-    onLoopDone: () => console.log(`loop completed after 3 runs.`)
+    onLoopDone: () => {
+      // console.log(``)
+    }
   })
 
 
@@ -52,7 +58,7 @@ function App() {
       >
         <SwiperSlide >
           <div
-            className="hero w-full min-h-full md:min-h-[50rem] "
+            className="hero w-full min-h-[30rem] bg-no-repeat md:min-h-[50rem] "
             style={{
               backgroundImage: `url(${banner1})`,
               backgroundSize: "cover",
@@ -63,13 +69,13 @@ function App() {
             <div className="hero-overlay bg-opacity-60"></div>
             <div className='my-10'>
               <Fade direction='left' delay={1000}>
-                <h2 className='md:text-5xl lg:text-6xl font-semibold text-white'>Collaborative Learning</h2>
+                <h2 className='text-2xl md:text-5xl lg:text-6xl font-semibold text-white'>Collaborative Learning</h2>
               </Fade>
               <Fade delay={2000}>
-                <p className='text-white font-semibold text-xl mt-1 md:mb-5 lg:mb-9'>Unlock the power of teamwork</p>
+                <p className='text-white font-semibold text-xs md:text-xl mt-1 mb-2 md:mb-5 lg:mb-9'>Unlock the power of teamwork</p>
               </Fade>
               <Fade direction='up' delay={3000}>
-               <a className='cursor-pointer bg-[#fff568] md:text-base lg:text-lg font-medium lg:px-8 md:px-7 md:py-2 lg:py-3 rounded-4xl'>Start Studying</a>
+                <a className='cursor-pointer bg-[#fff568] text-xs md:text-base lg:text-lg  md:font-medium font-semibold lg:px-8 md:px-7 px-5 py-1 md:py-2 lg:py-3 rounded-4xl'>Start Studying</a>
               </Fade>
 
             </div>
@@ -78,7 +84,7 @@ function App() {
 
         <SwiperSlide >
           <div
-            className="hero w-full min-h-full md:min-h-[50rem] "
+            className="hero w-full min-h-[30rem] bg-no-repeat md:min-h-[50rem]"
             style={{
               backgroundImage: `url(${banner2})`,
               backgroundSize: "cover",
@@ -89,13 +95,13 @@ function App() {
             <div className="hero-overlay bg-opacity-60"></div>
             <div className='my-10 '>
               <Fade direction='left' delay={1000}>
-                <h2 className='md:text-5xl lg:text-6xl font-semibold text-white'>Study Smarter, Together</h2>
+                <h2 className='text-2xl md:text-5xl lg:text-6xl font-semibold text-white'>Study Smarter, Together</h2>
               </Fade>
               <Fade delay={2000}>
-                <p className='text-white font-semibold text-xl mt-1 md:mb-5 lg:mb-9'>Join a community of learners</p>
+                <p className='text-white font-semibold text-xs md:text-xl mt-1 mb-2 md:mb-5 lg:mb-9'>Join a community of learners</p>
               </Fade>
               <Fade direction='up' delay={3000}>
-               <a className='cursor-pointer bg-[#fff568] md:text-base lg:text-lg font-medium lg:px-8 md:px-7 md:py-2 lg:py-3 rounded-4xl'>Join Now</a>
+                <a className='cursor-pointer bg-[#fff568] text-xs md:text-base lg:text-lg  md:font-medium font-semibold lg:px-8 md:px-7 px-5 py-1 md:py-2 lg:py-3 rounded-4xl'>Join Now</a>
               </Fade>
 
             </div>
@@ -104,7 +110,7 @@ function App() {
 
         <SwiperSlide >
           <div
-            className="hero w-full min-h-full md:min-h-[50rem] "
+            className="hero w-full min-h-[30rem] bg-no-repeat md:min-h-[50rem] "
             style={{
               backgroundImage: `url(${banner3})`,
               backgroundSize: "cover",
@@ -115,13 +121,13 @@ function App() {
             <div className="hero-overlay bg-opacity-60"></div>
             <div className='my-10'>
               <Fade direction='left' delay={1000}>
-                <h2 className='md:text-5xl lg:text-6xl font-semibold text-white'>Your Virtual Study Hub</h2>
+                <h2 className='text-2xl md:text-5xl lg:text-6xl font-semibold text-white'>Your Virtual Study Hub</h2>
               </Fade>
               <Fade delay={2500}>
-                <p className='text-white font-semibold text-xl mt-1 md:mb-7 lg:mb-9'>Learn, Share, and Grow</p>
+                <p className='text-white font-semibold text-xs md:text-xl mt-1 mb-2 md:mb-5 lg:mb-9'>Learn, Share, and Grow</p>
               </Fade>
               <Fade direction='up' delay={3000}>
-               <a className='cursor-pointer bg-[#fff568] md:text-base lg:text-lg font-medium lg:px-8 md:px-7 md:py-2 lg:py-3 rounded-4xl'>Get Started</a>
+                <a className='cursor-pointer bg-[#fff568] text-xs md:text-base lg:text-lg  md:font-medium font-semibold lg:px-8 md:px-7 px-5 py-1 md:py-2 lg:py-3 rounded-4xl'>Get Started</a>
               </Fade>
 
             </div>

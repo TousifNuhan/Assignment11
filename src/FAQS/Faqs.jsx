@@ -11,24 +11,24 @@ const Faqs = () => {
     return (
         <div className='bg-[#202335] pb-10'>
             <div className='w-4/5 mx-auto '>
-                <div className='text-center w-full  py-14'>
-                    <h2 className='md:text-3xl lg:text-4xl font-bold text-white '>Inquired <span className=' text-transparent bg-clip-text bg-[#8c76f0] '>Queries</span></h2>
-                    <p className='w-1/2 mx-auto text-[#d7d0c8] my-4 md:text-sm lg:text-base font-medium'>After reading the instructions, I had a few inquired queries about the <br /> process and decided to reach out to customer support for <br /> clarification.</p>
+                <div className='text-center w-full py-8 md:py-14'>
+                    <h2 className=' text-xl md:text-3xl lg:text-4xl font-bold text-white '>Inquired <span className=' text-transparent bg-clip-text bg-[#8c76f0] '>Queries</span></h2>
+                    <p className='md:w-1/2 w-11/12 mx-auto text-[#d7d0c8] mt-2 md:mt-0 md:my-4 md:text-sm lg:text-base font-medium'>After reading the instructions, I had a few inquired queries about the <br /> process and decided to reach out to customer support for <br /> clarification.</p>
                 </div>
 
-                <div className='flex  text-white'>
-                    <div className='text-center md:mr-5 lg:mr-10'>
-                        <div className='md:px-5 lg:px-13 md:py-8 lg:py-12 md:mb-6 lg:mb-8 rounded-2xl border border-[#64646466]'>
+                <div className='md:flex  text-white'>
+                    <div className='text-center md:mr-5 lg:mr-10 mb-8 md:mb-0'>
+                        <div className='md:px-5 lg:px-13 py-6 md:py-8 lg:py-12 mb-4 md:mb-6 lg:mb-8 rounded-2xl border border-[#64646466]'>
                             <img className='h-7 lg:h-10 mx-auto' src={book2} alt="" />
                             <h3 className='text-[#D7D0C8] font-semibold md:text-lg lg:text-xl mt-3 mb-2'>Digitize Your Documents</h3>
-                            <p className='text-[#d7d0c8bf] font-medium md:text-xs lg:text-sm mb-3'>Efficiently Arranged and Current</p>
-                            <button className='mt-3 lg:py-2 md:py-2 md:px-4 lg:px-6 cursor-pointer rounded-lg bg-[#8c76f0]'>Check Document</button>
+                            <p className='text-[#d7d0c8bf] font-medium text-xs lg:text-sm mb-3'>Efficiently Arranged and Current</p>
+                            <button className='mt-3 lg:py-2 py-1 md:py-2 px-2 md:px-4 lg:px-6 cursor-pointer rounded-lg bg-[#8c76f0]'>Check Document</button>
                         </div>
-                        <div className='md:px-5 lg:px-13 md:py-8 lg:py-12 md:mb-6 lg:mb-8 rounded-2xl border border-[#64646466]'>
+                        <div className='md:px-5 lg:px-13 py-6 md:py-8 lg:py-12 md:mb-6 lg:mb-8 rounded-2xl border border-[#64646466]'>
                             <img className='h-7 lg:h-10 mx-auto' src={headphone2} alt="" />
                             <h3 className='text-[#D7D0C8] font-semibold md:text-lg lg:text-xl mt-3 mb-2'>Committed Assistance</h3>
-                            <p className='text-[#d7d0c8bf] font-medium md:text-xs lg:text-sm mb-3'>Require assistance? Send us a ticket. We're <br /> here to help!</p>
-                            <button className='mt-3 lg:py-2 md:py-2 md:px-4 lg:px-6 cursor-pointer rounded-lg bg-[#8c76f0]'>Get Support</button>
+                            <p className='text-[#d7d0c8bf] font-medium text-xs lg:text-sm mb-3'>Require assistance? Send us a ticket. We're <br /> here to help!</p>
+                            <button className='mt-3 lg:py-2 py-1 md:py-2 px-2 md:px-4 lg:px-6 cursor-pointer rounded-lg bg-[#8c76f0]'>Get Support</button>
                         </div>
                     </div>
 

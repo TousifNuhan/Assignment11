@@ -27,11 +27,11 @@ const CreateAssignment = () => {
         const DifficultyLevel = form.DifficultyLevel.value
         const description = form.description.value
 
-        console.log(email, Title, Marks, dueDate, photoURL, DifficultyLevel, description)
+        // console.log(email, Title, Marks, dueDate, photoURL, DifficultyLevel, description)
 
         const newAss = { email, Title, Marks, dueDate, photoURL, DifficultyLevel, description }
 
-        fetch('http://localhost:5000/createAssignments',
+        fetch('https://assignment11-server-cyan.vercel.app/createAssignments',
             {
                 method: 'POST',
                 headers: {
@@ -43,7 +43,7 @@ const CreateAssignment = () => {
         )
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 if(data.message === 'Unauthorized' || data.message === 'Forbidden access'){
                     toast.error(data.message)
                 }
@@ -58,18 +58,19 @@ const CreateAssignment = () => {
     }
 
     return (
-        <div className='md:pt-[13%] lg:pt-[8%] min-h-screen bg-base-100 text-base-content'>
+        <div className='mt-[25%] md:mt-[13%] lg:mt-[8%] min-h-screen bg-base-100 text-base-content'>
             <div className="w-11/12 flex flex-col items-center mx-auto my-3">
                 <h1 className="text-base-content font-bold text-xl md:text-3xl">Create a New Assignment</h1>
                 {/* <h1 className="text-base-content text-3xl font-bold ">Create a New Assignment</h1> */}
-                <p className="text-center text-gray-500 font-semibold text-sm w-4/5  pt-1 md:mt-1 mb-7">Get started by setting up an assignment for your study group! Fill out the details below to help your peers stay on track and collaborate effectively.</p>
+                <p className="text-center text-gray-500 font-semibold text-xs md:text-sm w-4/5 lg:w-3/5 pt-1 md:mt-1 mb-7">Get started by setting up an assignment for your study group! Fill out the details below to help your peers stay on track and collaborate effectively.</p>
                 {/* <p className="text-base-content"> aaas</p> */}
             </div>
             <form onSubmit={handleCreateAssignmentForm} className='md:mt-0 mt-6 mb-10'>
-                <div className=" border-2 border-[#e4e4e7] hover:border-gray-400 hover:delay-150 hover:duration-200 rounded-2xl md:w-4/5 lg:w-3/5 mx-auto p-6 md:p-10">
+                <div className=" border-2 border-[#e4e4e7] hover:border-gray-400 hover:delay-150 hover:duration-200 rounded-2xl w-11/12 md:w-4/5 lg:w-3/5 mx-auto p-6 md:p-10">
 
                     <div >
-                        <h1 className="text-base-content font-bold md:text-xl lg:text-2xl mb-4 pb-3">Create New Assignment</h1>
+                        <h1 className="text-base-content font-bold md:text-xl lg:text-2xl md:mb-4 md:pb-3 pb-3
+                        ">Create New Assignment</h1>
                     </div>
 
                     <div className="md:grid grid-cols-2 items-center ">
@@ -87,7 +88,7 @@ const CreateAssignment = () => {
                         </div>
                         <div className="flex-1">
                             <label className="label">
-                                <span className="label-text text-gray-500 text-base font-semibold mb-2">Marks</span>
+                                <span className="label-text text-gray-500 text-base font-semibold mb-2 mt-2 md:mt-0">Marks</span>
                             </label>
                             <input
                                 type="number"
@@ -173,7 +174,7 @@ const CreateAssignment = () => {
                     </div>
 
                     <div className="flex justify-center pt-5">
-                        <button className="text-white w-2/5 md:w-full py-3 rounded-[4px]  bg-[#18181b] hover:opacity-95 cursor-pointer">Create Assignment</button>
+                        <button className="text-white w-3/5 md:w-full py-3 rounded-[4px]  bg-[#18181b] hover:opacity-95 cursor-pointer">Create Assignment</button>
                     </div>
                 </div>
             </form>

@@ -20,7 +20,7 @@ const PendingAssignment = () => {
         })
 
     // useEffect(() => {
-    //     // fetch('http://localhost:5000/allSubmittedAssignments')
+    //     // fetch('https://assignment11-server-cyan.vercel.app/allSubmittedAssignments')
     //     //     .then(res => res.json())
     //     //     .then(data => {
     //     //         console.log(data)
@@ -65,7 +65,7 @@ const PendingAssignment = () => {
 
         // form.reset()
 
-        console.log(GetMarks, Feedback)
+        // console.log(GetMarks, Feedback)
 
         const markingUpdated = { Status, GetMarks, Feedback }
 
@@ -74,7 +74,7 @@ const PendingAssignment = () => {
 
        mutateAsync(markingUpdated)
 
-        // fetch(`http://localhost:5000/submittedAssignments/${selectedAssignment._id}`, {
+        // fetch(`https://assignment11-server-cyan.vercel.app/submittedAssignments/${selectedAssignment._id}`, {
         //     method: 'PATCH',
         //     headers: {
         //         'content-type': 'application/json'
@@ -96,11 +96,11 @@ const PendingAssignment = () => {
             <div>
                 <div className='text-center mb-8'>
                     <h1 className="text-base-content font-bold text-xl md:text-3xl">Pending Assignments</h1>
-                    <p className="text-center text-gray-500 font-semibold text-sm w-4/5 md:w-4/5 pt-1 md:mt-2 mb-7 mx-auto">This section displays all submitted assignments that are currently waiting for review and grading. As part of the collaborative learning process, you can view your peers’ work, assess their submissions, and provide constructive feedback along with marks. Use this page to help maintain a fair and supportive group study environment by evaluating pending tasks responsibly.</p>
+                    <p className="text-center text-gray-500 font-semibold text-xs md:text-sm w-4/5 md:w-4/5 pt-1 md:mt-2 mb-7 mx-auto">This section displays all submitted assignments that are currently waiting for review and grading. As part of the collaborative learning process, you can view your peers’ work, assess their submissions, and provide constructive feedback along with marks. Use this page to help maintain a fair and supportive group study environment by evaluating pending tasks responsibly.</p>
                 </div>
             </div>
-            <div className="overflow-x-auto">
-                <table className="table">
+            <div className="overflow-x-auto ">
+                <table className="table ">
                     {/* head */}
                     <thead>
                         <tr>
@@ -117,11 +117,11 @@ const PendingAssignment = () => {
                             allAssignments.map((assignment, index) =>
                             (
                                 <tr key={assignment._id}>
-                                    <th>{index + 1}</th>
-                                    <td>{assignment.Title}</td>
-                                    <td>{assignment.Marks}</td>
-                                    <td>{assignment.Name}</td>
-                                    <td><button type="submit" onClick={() => openModal(assignment)} className="md:mt-0 mt-3 px-6 py-3 mr-1 text-white bg-sky-500 hover:bg-sky-700 text-sm font-semibold rounded-md cursor-pointer">Give mark</button>
+                                    <th className="text-xs md:text-sm">{index + 1}</th>
+                                    <td className="text-xs md:text-sm">{assignment.Title}</td>     
+                                    <td className="text-xs md:text-sm">{assignment.Marks}</td>
+                                    <td className="text-xs md:text-sm">{assignment.Name}</td>
+                                    <td ><button type="submit" onClick={() => openModal(assignment)} className="md:mt-0 mt-3 px-6 py-3 mr-1 text-white bg-sky-500 hover:bg-sky-700 text-xs md:text-sm font-semibold rounded-md cursor-pointer">Give mark</button>
                                         <dialog id="modal2" className="modal">
                                             <div className="modal-box">
                                                 <form onSubmit={handleSubmit}  >
@@ -132,7 +132,7 @@ const PendingAssignment = () => {
 
                                                     <div>
                                                         <h3 className="font-semibold text-base mb-1 text-gray-500">Evaluate Submission: </h3>
-                                                        <a href={`http://localhost:5000${selectedAssignment.FileURL}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
+                                                        <a href={`https://assignment11-server-cyan.vercel.app${selectedAssignment.FileURL}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
                                                             View Document
                                                         </a>
                                                     </div>

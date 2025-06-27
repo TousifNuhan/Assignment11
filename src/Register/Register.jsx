@@ -22,7 +22,7 @@ const Register = () => {
     const handleGithubLogin = () => {
         githubLogin()
             .then(result => {
-                console.log(result.user)
+                // console.log(result.user)
                 toast.success("Registration successful!")
                 navigate(location?.state ? location.state : '/')
             })
@@ -36,7 +36,7 @@ const Register = () => {
     const handleGoogleLogin = () => {
         googleLogin()
             .then(result => {
-                console.log(result.user)
+                // console.log(result.user)
                 toast.success("Registration successful!")
                 navigate(location?.state ? location.state : '/')
             })
@@ -77,17 +77,19 @@ const Register = () => {
         createWithEmailAndPASS(email, password)
 
             .then(result => {
-                console.log(result.user)
+                // console.log(result.user)
                 // updating the user with name and photoURL
                 updateProfile(result.user, {
                     displayName: name,
                     photoURL: PhotoURL
                 })
-                    .then(() => console.log('profile updated'))
+                    .then(() => {
+                        // console.log('profile updated')
+                    })
                     .catch()
 
                 toast.success("Registration successful!")
-                // navigate(location?.state ? location.state : '/')
+                navigate(location?.state ? location.state : '/')
                 form.reset()
             })
 

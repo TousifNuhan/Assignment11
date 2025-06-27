@@ -42,7 +42,7 @@ const router = createBrowserRouter([
       {
         path: "/assignments",
         element: <Assignments></Assignments>,
-        loader: () => fetch('http://localhost:5000/createAssignments')
+        loader: () => fetch('https://assignment11-server-cyan.vercel.app/createAssignments')
       },
       {
         path: '/createAssignment',
@@ -72,12 +72,12 @@ const router = createBrowserRouter([
       {
         path: '/updateAssignments/:id',
         element: <PrivateRoute><UpdateAssignment></UpdateAssignment></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/createAssignments/${params.id}`)
+        // loader: ({ params }) => fetch(`https://assignment11-server-cyan.vercel.app/createAssignments/${params.id}`)
       },
       {
         path: '/assignments/:id',
         element: <PrivateRoute><AssignmentDetails></AssignmentDetails></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/createAssignments/${params.id}`, { credentials: 'include' })
+        loader: ({ params }) => fetch(`https://assignment11-server-cyan.vercel.app/createAssignments/${params.id}`, { credentials: 'include' })
       },
       {
 

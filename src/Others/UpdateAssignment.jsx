@@ -14,20 +14,21 @@ const UpdateAssignment = () => {
     // const datas = useLoaderData()
     // console.log(datas)
     const { id } = useParams()
+    console.log(id)
     const axiosSecure = useAxiosSecure()
 
-    const queryClient=useQueryClient()
+    const queryClient = useQueryClient()
 
     const { data: datas = [] } = useQuery({
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/createAssignments/${id}`)
             return data
         },
-        queryKey: ['updateAssignments']
+        queryKey: ['updateAssignments',id]
     })
 
     const { _id, email, Title, Marks, dueDate, photoURL, DifficultyLevel, description } = datas
-    console.log(_id)
+    
 
     // const { user } = useContext(AuthContext)
     const { user } = useAuth()
@@ -35,18 +36,17 @@ const UpdateAssignment = () => {
 
     const [startDate, setStartDate] = useState();
 
-    const {mutateAsync}=useMutation({
+    const { mutateAsync } = useMutation({
         mutationFn: async (UpdatedDatas) => {
-            const { data } = await axiosSecure.put(`/createAssignments/${_id}`,UpdatedDatas)
+            const { data } = await axiosSecure.put(`/createAssignments/${_id}`, UpdatedDatas)
             return data
         },
-        onSuccess: () => {
+        onSuccess: (form) => {
             toast.success('Updated Successfully!')
             navigate('/assignments')
 
             // refresh er borobhai re use kortesi
-
-            queryClient.invalidateQueries({queryKey:['updateAssignments']})
+            queryClient.invalidateQueries({ queryKey: ['updateAssignments',_id] })
         }
     })
 
@@ -63,9 +63,9 @@ const UpdateAssignment = () => {
 
         const UpdatedDatas = { Title, Marks, dueDate, photoURL, DifficultyLevel, description }
 
-        mutateAsync(UpdatedDatas)
-
-        // fetch(`http://localhost:5000/createAssignments/${_id}`, {
+        mutateAsync(UpdatedDatas, form)
+        
+        // fetch(`https://assignment11-server-cyan.vercel.app/createAssignments/${_id}`, {
         //     method: 'PUT',
         //     headers: {
         //         'content-type': 'application/json'
@@ -84,13 +84,13 @@ const UpdateAssignment = () => {
     }
     return (
         <div>
-            <div className='lg:pt-[8%] md:pt-[13%] min-h-screen bg-base-100 '>
+            <div className='mt-[25%] md:mt-[13%] lg:mt-[8%] min-h-screen bg-base-100 '>
                 <div className="w-11/12 flex flex-col items-center mx-auto my-3">
                     <h1 className="text-base-content font-bold text-xl md:text-3xl">Update an Assignment</h1>
-                    <p className="text-center text-gray-500 font-semibold text-sm w-4/5  pt-1 md:mt-1 mb-7">Keep your study group organized and informed by updating the details of this assignment. Use the form below to make any necessary changes—whether it's adjusting the due date, modifying the title, updating the marks, or revising the description. Keeping assignments up-to-date ensures everyone stays aligned and can collaborate effectively.</p>
+                    <p className="text-center text-gray-500 font-semibold md:text-sm w-11/12 pt-3 md:pt-1 md:mt-1 mb-7">Keep your study group organized and informed by updating the details of this assignment. Use the form below to make any necessary changes—whether it's adjusting the due date, modifying the title, updating the marks, or revising the description. Keeping assignments up-to-date ensures everyone stays aligned and can collaborate effectively.</p>
                 </div>
                 <form onSubmit={handleUpdateAssignmentForm} className='md:mt-0 mt-6 mb-10'>
-                    <div className=" border-2 border-[#e4e4e7] hover:border-gray-400 hover:delay-150 hover:duration-200 rounded-2xl md:w-4/5 lg:w-3/5 mx-auto p-6 md:p-10">
+                    <div className=" border-2 border-[#e4e4e7] hover:border-gray-400 hover:delay-150 hover:duration-200 rounded-2xl w-11/12 md:w-4/5 lg:w-3/5 mx-auto p-6 md:p-10">
 
                         <div >
                             <h1 className="text-base-content font-bold text-xl lg:text-2xl mb-4 pb-3">Update Assignment</h1>
@@ -111,7 +111,7 @@ const UpdateAssignment = () => {
                             </div>
                             <div className="flex-1">
                                 <label className="label">
-                                    <span className="label-text text-gray-500 text-base font-semibold mb-2">Marks</span>
+                                    <span className="label-text text-gray-500 text-base font-semibold mb-2 mt-2 md:mt-0">Marks</span>
                                 </label>
                                 <input
                                     type="number"
@@ -191,7 +191,7 @@ const UpdateAssignment = () => {
                         </div>
 
                         <div className="flex justify-center pt-5">
-                            <button className="text-white w-2/5 md:w-full py-3 rounded-[4px]  bg-[#18181b] hover:opacity-95 cursor-pointer">Update Assignment</button>
+                            <button className="text-white w-3/5 md:w-full py-3 rounded-[4px]  bg-[#18181b] hover:opacity-95 cursor-pointer">Update Assignment</button>
                         </div>
                     </div>
                 </form>

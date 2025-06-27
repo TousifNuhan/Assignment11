@@ -1,8 +1,13 @@
-# React + Vite
+## PeerLearn
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Live Site URL: "https://assignment11-9d1be.web.app/"
 
-Currently, two official plugins are available:
+##  Five bullet points:
+##     - Integrated JWT
+##     - Implemented Tanstack query mutations 
+##     - Added two extra features
+##     - Added Validation
+##     - Responsive for: Desktop,Tablet,phone
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## assignment_category_0001

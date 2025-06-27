@@ -18,7 +18,7 @@ const Navbar = () => {
   const handleLogout = () => {
     userSignOut()
       .then(result => {
-        console.log(result.user)
+        // console.log(result.user)
 
         toast.success("Logout Successfull")
 
@@ -75,6 +75,11 @@ const Navbar = () => {
         : <>
           <NavLink to="/"><li><a className={`${location.pathname === "/" ? 'text-yellow-500' : 'lg:text-white '} hover:text-yellow-500 font-semibold md:text-sm lg:text-base border-none`}>Home</a></li></NavLink>
           <NavLink to="/assignments"><li><a className={`${location.pathname === "/assignments" ? 'text-yellow-500' : 'lg:text-white '} hover:text-yellow-500 font-semibold md:text-sm lg:text-base`}>Assignments</a></li></NavLink>
+          <NavLink to="/login"><li><a className={`${location.pathname === "/login" ? 'text-yellow-500' : 'lg:text-white '} hover:text-yellow-500 font-semibold md:hidden flex md:text-sm lg:text-base`}>Login</a></li></NavLink>
+          <NavLink to="/register"><li><a className={`${location.pathname === "/register" ? 'text-yellow-500' : 'lg:text-white '} hover:text-yellow-500 font-semibold md:hidden flex md:text-sm lg:text-base`}>Register</a></li></NavLink>
+          {/* <NavLink to="/login"><a className="border-2 border-white px-8 py-2 text-base font-semibold text-white cursor-pointer hover:bg-white md:flex hidden hover:text-black rounded-4xl mr-2">Login</a></NavLink>
+          <NavLink to="/register"> <a className="border-2 border-white md:flex hidden px-8 py-2 text-base font-semibold text-white cursor-pointer mr-4 hover:bg-white hover:text-black rounded-4xl  ">Register</a></NavLink> */}
+
         </>
     }
   </>
@@ -90,7 +95,7 @@ const Navbar = () => {
   const lightToDark = (
     <label className="flex cursor-pointer gap-2 items-center mr-4">
       {/* Light icon */}
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg className='md:h-6 md:w-5 h-5 w-4' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="5" />
         <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
       </svg>
@@ -99,11 +104,11 @@ const Navbar = () => {
         type="checkbox"
         checked={theme === "dark"}
         onChange={toggleTheme}
-        className="toggle bg-white border-white"
+        className="toggle bg-white border-white h-5 w-8 md:h-6 md:w-10"
       />
 
       {/* Dark icon */}
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg className='md:h-6 md:w-5 h-5 w-4' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
       </svg>
     </label>
@@ -119,7 +124,7 @@ const Navbar = () => {
           <div className="dropdown dropdown-end  lg:mr-3">
             <div tabIndex={0} role="" className=" ">
               <div className='avatar'>
-                <div className="w-12 rounded-full ">
+                <div className="w-10  md:w-12 rounded-full ">
                   <img src={user.photoURL} alt='Coming soon' />
                 </div>
               </div>
@@ -133,20 +138,20 @@ const Navbar = () => {
           </div>
         </>
         : <>
-          <NavLink to="/register"> <a className="border-2 border-white px-8 py-2 text-base font-semibold text-white cursor-pointer mr-4 hover:bg-white hover:text-black rounded-4xl">Register</a></NavLink>
-          <NavLink to="/login"><a className="border-2 border-white px-8 py-2 text-base font-semibold text-white cursor-pointer hover:bg-white hover:text-black rounded-4xl mr-2">Login</a></NavLink>
+          <NavLink to="/register"> <a className="border-2 border-white md:flex hidden px-8 py-2 text-base font-semibold text-white cursor-pointer mr-4 hover:bg-white hover:text-black rounded-4xl  ">Register</a></NavLink>
+          <NavLink to="/login"><a className="border-2 border-white px-8 py-2 text-base font-semibold text-white cursor-pointer hover:bg-white md:flex hidden hover:text-black rounded-4xl mr-2">Login</a></NavLink>
         </>
     }
 
   </>
 
   return (
-    <div className={`fixed top-0  w-full z-20 ${!isHomePage || (isHomePage && isScrolled) ? 'bg-[#000000bf] shadow-md  ' : 'bg-transparent'} transition-all duration-500 `}>
+    <div className={`fixed top-0  w-full z-20 ${!isHomePage || (isHomePage && isScrolled) ? 'bg-[#000000bf] shadow-md' : 'bg-transparent'} transition-all duration-500 `}>
       <div className="navbar">
-        <div className="navbar-start w-4/5 items-center">
-          <div onClick={() => setIsDropDownVisible(!isDropDownVisible)} className="dropdown ">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden group">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white hover:text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+        <div className="navbar-start w-11/12 md:w-4/5 items-center ">
+          <div onClick={() => setIsDropDownVisible(!isDropDownVisible)} className="dropdown  ">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden group relative md:static">
+              <svg xmlns="http://www.w3.org/2000/svg" className=" md:h-5 h-5 w-5 md:w-5 text-white hover:text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
             </div>
             <ul className="menu menu-sm dropdown-content text-center bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
               {
@@ -159,9 +164,9 @@ const Navbar = () => {
 
             </ul>
           </div>
-          <div className="flex justify-center items-center">
-            <img className="h-8 w-10 ml-2" src="https://storage.googleapis.com/sm-studio/studio/uploads/e790da2e-b54e-45ab-afee-de73237a29a7.svg" alt="Logo" />
-            <a className="ml-3 text-2xl font-semibold text-white">PeerLearn</a>
+          <div className="flex justify-center items-center  left-6">
+            <img className="md:h-8 h-4 w-4 md:w-10 md:ml-2 " src="https://storage.googleapis.com/sm-studio/studio/uploads/e790da2e-b54e-45ab-afee-de73237a29a7.svg" alt="Logo" />
+            <a className="md:ml-3 ml-2 text-base md:text-2xl font-semibold text-white">PeerLearn</a>
 
           </div>
           <div className=" hidden lg:flex ml-5">

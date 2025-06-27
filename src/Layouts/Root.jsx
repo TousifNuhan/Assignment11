@@ -1,19 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 import { IoIosArrowRoundUp } from "react-icons/io";
-import { AuthContext } from '../Providers/AuthProvider';
+
 
 const Root = () => {
-
-    // const { loading,setLoading } = useContext(AuthContext)
-
-    // if (loading) {
-    //     return <div className='h-screen mx-auto flex justify-center items-center'>
-    //         <span className="loading loading-ring loading-xl "></span>
-    //     </div>;
-    // }
 
     const [isScrolled, setIsScrolled] = useState(false);
     const [scrollProgress, setScrollProgress] = useState(0);

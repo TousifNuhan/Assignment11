@@ -16,7 +16,7 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false)
 
     const location = useLocation()
-    console.log(location)
+    // console.log(location)
     const navigate = useNavigate()
 
 
@@ -25,12 +25,12 @@ const Login = () => {
     const handleGithubLogin = () => {
         githubLogin()
             .then(result => {
-                console.log(result.user)
+                // console.log(result.user)
                 toast.success("Login successful!")
                 navigate(location?.state ? location.state : '/')
             })
             .catch(error => {
-                console.error(error)
+                // console.error(error)
                 toast.error("Login attempt failed")
 
             })
@@ -40,13 +40,13 @@ const Login = () => {
     const handleGoogleLogin = () => {
         googleLogin()
             .then(result => {
-                console.log(result.user)
+                // console.log(result.user)
                 toast.success("Login successful!")
                 navigate(location?.state ? location.state : '/')
             })
             .catch(error => {
 
-                console.error(error)
+                // console.error(error)
                 toast.error("Login attempt failed")
             })
     }
@@ -60,19 +60,19 @@ const Login = () => {
 
         signInWithEmailAndPASS(email, password)
             .then(result => {
-                console.log(result.user)
+                // console.log(result.user)
 
                 toast.success("Login successful!")
                 form.reset()
-                // const user = { email }
-                // axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
-                //     //{withCredentials: true } browser a cookie ta ke set krbe 
-                //     .then(res => {
-                //         console.log(res.data)
-                //         if (res.data.success) {
-                //             navigate(location?.state ? location.state : '/')
-                //         }
-                //     })
+                const user = { email }
+                axios.post('https://assignment11-server-cyan.vercel.app/jwt', user, { withCredentials: true })
+                    //{withCredentials: true } browser a cookie ta ke set krbe 
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.success) {
+                            navigate(location?.state ? location.state : '/')
+                        }
+                    })
             })
             .catch(error => {
                 // console.error(error)

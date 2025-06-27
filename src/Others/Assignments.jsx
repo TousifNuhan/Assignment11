@@ -39,14 +39,14 @@ const Assignments = () => {
     //     </div>;
     // }
     return (
-        <div className='min-h-screen bg-base-100 text-base-content md:mt-[13%] lg:mt-[8%]'>
+        <div className='min-h-screen bg-base-100 text-base-content mt-[25%] md:mt-[13%] lg:mt-[8%]'>
             <div className="w-11/12 flex flex-col items-center mx-auto my-3 ">
                 <h1 className="text-base-content font-bold text-xl md:text-3xl">Explore Assignments</h1>
-                <p className="text-center text-gray-500 font-semibold text-sm w-4/5  pt-2 md:mt-1 ">Browse through all peer-created assignments. You can filter by difficulty level and easily view, update, or delete assignments. Find tasks that challenge your skills and help you grow!</p>
+                <p className="text-center text-gray-500 font-semibold text-xs md:text-sm w-4/5 pt-2 md:mt-1 ">Browse through all peer-created assignments. You can filter by difficulty level and easily view, update, or delete assignments. Find tasks that challenge your skills and help you grow!</p>
             </div>
             <div className='w-11/12 mx-auto text-center mt-5'>
 
-                <button className=" text-base font-semibold btn  btn-outline " popoverTarget="popover-1" style={{ anchorName: "--anchor-1" }}>
+                <button className="text-sm md:text-base font-semibold btn  btn-outline " popoverTarget="popover-1" style={{ anchorName: "--anchor-1" }}>
                     Filter By
                 </button>
 

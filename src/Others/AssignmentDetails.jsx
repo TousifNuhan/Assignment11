@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useLocation } from "react-router-dom";
 import { FilePond, registerPlugin } from 'react-filepond';
 import 'filepond/dist/filepond.min.css';
 
@@ -8,21 +8,34 @@ import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 import { AuthContext } from "../Providers/AuthProvider";
 import toast from "react-hot-toast";
 import useAuth from "../Hooks/useAuth";
+import { useMutation } from "@tanstack/react-query";
+import useAxiosCommon from "../Hooks/useAxiosCommon";
 registerPlugin(FilePondPluginFileValidateType);
 
 const AssignmentDetails = () => {
     // const { user } = useContext(AuthContext)
-    const { user } = useAuth()
-    
-    console.log(user)
+    const { user, loading } = useAuth()
+    const axiosCommon = useAxiosCommon();
+
+    // console.log(user)
     const [files, setFiles] = useState([]);
 
-    const data = useLoaderData()
-    const { _id, email, Title, Marks, dueDate, photoURL, DifficultyLevel, description } = data
+    const datas = useLoaderData()
+    const { _id, email, Title, Marks, dueDate, photoURL, DifficultyLevel, description } = datas
 
-    console.log(data)
+    // console.log(data)
 
-
+    const { mutateAsync } = useMutation({
+        mutationFn: async (formData) => {
+            const { data } = await axiosCommon.post('/submittedAssignments',formData)
+            return data
+        },
+        onSuccess: () => {
+            
+            toast.success("You've successfully submitted the assignment")
+            
+        }
+    })
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -33,7 +46,7 @@ const AssignmentDetails = () => {
         const TextArea = form.textArea.value
         const Status = "Pending"
 
-        console.log(File, TextArea)
+        // console.log(File, TextArea)
 
         const formData = new FormData()
         formData.append("Name", Name)
@@ -49,42 +62,48 @@ const AssignmentDetails = () => {
 
         // cleared the modal form
         setFiles([])
-        form.reset()
 
         // const submittedAssignmentDetails = { Name, Title, Marks, Email, File, TextArea, Status }
 
-        fetch('http://localhost:5000/submittedAssignments', {
-            method: 'POST',
-            // headers: {
-            //     'content-type': 'application/json'
-            // },
-            body: formData
-        })
-            .then(res => res.json())
-            .then(data => {
-                toast.success("You've successfully submitted the assignment")
-                console.log(data)
-            })
+        mutateAsync(formData)
+        form.reset()
+
+        // fetch('https://assignment11-server-cyan.vercel.app/submittedAssignments', {
+        //     method: 'POST',
+        //     // headers: {
+        //     //     'content-type': 'application/json'
+        //     // },
+        //     body: formData
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log("sub")
+        //         // form.reset()
+        //         toast.success("You've successfully submitted the assignment")
+        //         // console.log(data)
+        //     })
 
     }
 
     return (
-        <div className="pt-32 lg:min-h-screen bg-base-100 text-base-content border-2 border-red-600">
+        <div className="pt-32 min-h-screen bg-base-100 text-base-content ">
             <div className="w-4/5 mx-auto">
-                <h3 className="text-2xl font-semibold">{Title}</h3>
-                <div className="flex  justify-between mt-5">
+                <h3 className="text-xl md:text-2xl font-semibold">{Title}</h3>
+                <div className="flex flex-col-reverse lg:flex-row  justify-between mt-5">
                     <div className="mt-3">
                         <div className="flex ">
-                            <h5><span className="text-sm font-semibold">Type:</span> <span>{DifficultyLevel}</span></h5>
-                            <h5 className="ml-5"> <span className="text-sm font-semibold">Marks:</span> <span>{Marks}</span></h5>
+                            <h5><span className="text-xs md:text-sm font-semibold">Type:</span> <span>{DifficultyLevel}</span></h5>
+                            <h5 className="ml-5"> <span className="text-xs md:text-sm font-semibold">Marks:</span> <span>{Marks}</span></h5>
                         </div>
                         <div className="mt-5 mb-14">
-                            <p className="w-4/5 mb-5">{description}</p>
-                            <h5><span className="text-sm font-semibold">Due Date:</span>  <span>{dueDate}</span></h5>
+                            <p className="w-4/5 text-xs md:text-sm font-medium  mb-5">{description}</p>
+                            <h5><span className="text-xs md:text-sm font-semibold">Due Date:</span>  <span>{dueDate}</span></h5>
                         </div>
 
+                        <div className="flex justify-center md:justify-between md:flex-none">
+                            <button onClick={() => document.getElementById('modal').showModal()} className="bg-[#59c6bc] py-3 cursor-pointer  px-12 text-white rounded-4xl hover:bg-[#FFF568] hover:text-black text-xs md:text-sm font-semibold">Take Assignment</button>
+                        </div>
 
-                        <button onClick={() => document.getElementById('modal').showModal()} className="bg-[#59c6bc] py-3 cursor-pointer px-12 text-white rounded-4xl hover:bg-[#FFF568] hover:text-black font-semibold">Take Assignment</button>
                         <dialog id="modal" className="modal">
                             <div className="modal-box">
                                 <form method="dialog">
@@ -99,6 +118,7 @@ const AssignmentDetails = () => {
                                             files={files}
                                             onupdatefiles={setFiles}
                                             allowMultiple={false}
+                                            required
                                             name="file" // used to POST field name
                                             labelIdle='📄 Drag & drop your PDF/DOC file or <span class="filepond--label-action">Browse</span>'
                                             acceptedFileTypes={[
@@ -109,7 +129,7 @@ const AssignmentDetails = () => {
                                         />
                                         <div className="w-full ">
                                             <h3 className="text-base font-semibold mb-1">Note: </h3>
-                                            <textarea name="textArea" placeholder="Give a quick note" className="focus:outline-none w-full rounded-lg border border-black pl-2 pt-2 h-24"></textarea>
+                                            <textarea name="textArea" required placeholder="Give a quick note" className="focus:outline-none w-full rounded-lg border border-black pl-2 pt-2 h-24"></textarea>
                                         </div>
                                         <div className="mt-2">
                                             <div>
@@ -121,7 +141,7 @@ const AssignmentDetails = () => {
                             </div>
                         </dialog>
                     </div>
-                    <div>
+                    <div className="lg:my-0 my-3 md:my-5">
 
                         <img className="w-full h-full" src={photoURL} alt="" />
                     </div>

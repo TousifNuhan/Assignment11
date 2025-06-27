@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://assignment11-server-cyan.vercel.app',
     withCredentials: true
 })
 
@@ -19,11 +19,11 @@ const useAxiosSecure = () => {
             // console.log(res)
             return res
         }, err => {
-            console.log('inter', err)
+            // console.log('inter', err)
             if (err.response.status === 401 || err.response.status === 403) {
                 userSignOut()
                     .then(result => {
-                        console.log(result.user)
+                        // console.log(result.user)
                         navigate('/login')
                     })
                     .catch(error => {

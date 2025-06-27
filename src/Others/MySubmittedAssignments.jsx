@@ -35,14 +35,14 @@ const MySubmittedAssignments = () => {
 
     //     //eta first a krslm then axios dye update kore felsi 2 tai same
 
-    //     // fetch(`http://localhost:5000/mySubmittedAssignments?email=${user?.email}`)
+    //     // fetch(`https://assignment11-server-cyan.vercel.app/mySubmittedAssignments?email=${user?.email}`)
     //     //     .then(res => res.json())
     //     //     .then(data => {
     //     //         console.log(data)
     //     //         setAssignments(data)
     //     //     })
 
-    //     // axios.get(`http://localhost:5000/mySubmittedAssignments?email=${user?.email}`, {withCredentials: true})
+    //     // axios.get(`https://assignment11-server-cyan.vercel.app/mySubmittedAssignments?email=${user?.email}`, {withCredentials: true})
     //     //     .then(res => {
     //     //         setAssignments(res.data)
     //     //     })
@@ -60,7 +60,7 @@ const MySubmittedAssignments = () => {
         <div className='mt-28 mb-5 min-h-screen bg-base-100 text-base-content'>
             <div className='text-center mb-8'>
                 <h1 className="text-base-content font-bold text-xl md:text-3xl">My Submitted Assignments</h1>
-                <p className="text-center text-gray-500 font-semibold text-sm w-4/5 md:w-4/5 pt-1 md:mt-2 mb-7 mx-auto">Welcome to your submitted assignments dashboard. Here, you can track the progress of the assignments you've taken, review their statuses, and view any feedback or marks you've received. Stay updated on which tasks are still under review and which have been graded. This section helps you monitor your growth and contributions in the group study environment.</p>
+                <p className="text-center text-gray-500 font-semibold text-xs md:text-sm w-4/5 md:w-4/5 pt-1 md:mt-2 mb-7 mx-auto">Welcome to your submitted assignments dashboard. Here, you can track the progress of the assignments you've taken, review their statuses, and view any feedback or marks you've received. Stay updated on which tasks are still under review and which have been graded. This section helps you monitor your growth and contributions in the group study environment.</p>
             </div>
             <div className="overflow-x-auto ">
                 <table className="table ">
@@ -82,12 +82,12 @@ const MySubmittedAssignments = () => {
                             assignments.map((assignment, index) =>
                             (
                                 <tr key={assignment._id}>
-                                    <th>{index + 1}</th>
-                                    <td>{assignment.Title}</td>
-                                    <td>{assignment.Status}</td>
-                                    <td>{assignment.Marks}</td>
-                                    <td>{assignment.GetMarks || 'N/A'}</td>
-                                    <td>{assignment.Feedback || 'N/A'}</td>
+                                    <th className="text-xs md:text-sm">{index + 1}</th>
+                                    <td className="text-xs md:text-sm">{assignment.Title}</td>
+                                    <td className="text-xs md:text-sm">{assignment.Status}</td>
+                                    <td className="text-xs md:text-sm">{assignment.Marks}</td>
+                                    <td className="text-xs md:text-sm">{assignment.GetMarks || 'N/A'}</td>
+                                    <td className="text-xs md:text-sm">{assignment.Feedback || 'N/A'}</td>
 
                                 </tr>
                             )

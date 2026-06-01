@@ -31,9 +31,7 @@ const AssignmentDetails = () => {
             return data
         },
         onSuccess: () => {
-            
             toast.success("You've successfully submitted the assignment")
-            
         }
     })
 
